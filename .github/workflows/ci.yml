@@ -16,8 +16,8 @@ jobs:
           - os: ubuntu-latest
             name: MinGW
             mingw: true
-            ninja: true
-            cmake: -DCMAKE_TOOLCHAIN_FILE=scripts/cmake-toolchain-mingw64-i686.cmake
+            cmake: '-GNinja'
+            cmake-toolchain-file: scripts/cmake-toolchain-mingw64-i686.cmake
 
     steps:
       - name: Checkout repository
@@ -29,18 +29,20 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y gcc-mingw-w64 g++-mingw-w64 ninja-build
 
-      - name: Setup SDL3
-        uses: libsdl-org/setup-sdl@main
-        with:
-          cmake-arguments: ${{ matrix.cmake }}
-
       - name: Install ninja
         if: matrix.ninja
         uses: ./.github/actions/setup-ninja
 
+      - name: Setup SDL3
+        uses: libsdl-org/setup-sdl@main
+        with:
+          version: 3-head
+          cmake-generator: Ninja
+          cmake-toolchain-file: ${{ matrix.cmake-toolchain-file }}
+
       - name: CMake (Configure)
         run: |
-          cmake -S . -B build ${{ matrix.cmake }} ${{ matrix.ninja && '-GNinja' }}
+          cmake -S . -B build ${{ (matrix.cmake-toolchain-file && format('-DCMAKE_TOOLCHAIN_FILE={0}', matrix.cmake-toolchain-file)) || '' }} ${{ matrix.cmake  || '' }}
 
       - name: CMake (Build)
         run: |
