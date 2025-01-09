@@ -1,0 +1,10 @@
+NAME SMACKW32.DLL
+EXPORTS
+    SmackClose@4
+    SmackDoFrame@4
+    SmackNextFrame@4
+    SmackOpen@12
+    SmackSoundUseMSS@4
+    SmackToBuffer@28
+    SmackToBufferRect@8
+    SmackWait@4

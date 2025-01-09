@@ -1,0 +1,6 @@
+targets:
+  GTA:
+    filename: Grand Theft Auto.exe
+    source-root: src
+    hash:
+      sha256: 6a5c313d9c0d87b4efa527baac7097dd4a149b9b2da5261abb224083f5cdc1c2
