@@ -23,25 +23,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - run: Install MinGW toolchain
+      - name: Install MinGW toolchain
         if: startswith(matrix.os, 'ubuntu') && matrix.mingw
         run: |
           sudo apt-get update -y
           sudo apt-get install -y gcc-mingw-w64 g++-mingw-w64 ninja-build
 
-      - run: Setup SDL3
+      - name: Setup SDL3
         uses: libsdl-org/setup-sdl@main
         with:
           cmake-arguments: ${{ matrix.cmake }}
 
-      - run: Install ninja
+      - name: Install ninja
         if: matrix.ninja
         uses: ./.github/actions/setup-ninja
 
-      - run: CMake (Configure)
+      - name: CMake (Configure)
         run: |
           cmake -S . -B build ${{ matrix.cmake }} ${{ matrix.ninja && '-GNinja' }}
 
-      - run: CMake (Build)
+      - name: CMake (Build)
         run: |
           cmake --build build --verbose
