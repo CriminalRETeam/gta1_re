@@ -42,42 +42,42 @@ extern tFont *g_Font_mmis;
 extern tFont *g_Font_cities[4];
 
 
-void LoadKanjiFont(void);
+extern void LoadKanjiFont(void);
 
-void LoadKanjiFont2(tFont **font);
+extern void LoadKanjiFont2(tFont **font);
 
-void LoadFont(tFont **font, const char *path, undefined2 arg3, bool palette);
+extern void LoadFont(tFont **font, const char *path, undefined2 arg3, bool palette);
 
-void UnloadKanjiFont();
+extern void UnloadKanjiFont();
 
-void LoadMenuFonts();
+extern void LoadMenuFonts();
 
-void FreeMenuFonts();
+extern void FreeMenuFonts();
 
-void FreeFont(tFont **font);
+extern void FreeFont(tFont **font);
 
-void SetCurrentFont(tFont *font);
+extern void SetCurrentFont(tFont *font);
 
-void SetCurrentFontAndExtra(tFont *font);
+extern void SetCurrentFontAndExtra(tFont *font);
 
-int GetFontHeight();
+extern int GetFontHeight();
 
-int GetCharacterWidth(u16 character);
+extern int GetCharacterWidth(u16 character);
 
-void *GetGlyphData(u16 glyph);
+extern void *GetGlyphData(u16 glyph);
 
-int GetTextWidthWithExtra(tFont *font, const char *text);
+extern int GetTextWidthWithExtra(tFont *font, const char *text);
 
-int GetTextWidth(tFont *font, const char *text);
+extern int GetTextWidth(tFont *font, const char *text);
 
-char *AdaptMultilineTextForWidth(const char *text, int width, int *count_lines);
+extern char *AdaptMultilineTextForWidth(const char *text, int width, int *count_lines);
 
-void PreviousCharPointer(const char **ptext);
+extern void PreviousCharPointer(const char **ptext);
 
-u16 DecodeCharacter(const char *text);
+extern u16 DecodeCharacter(const char *text);
 
-void NextCharacterPointer(const char **text);
+extern void NextCharacterPointer(const char **text);
 
-void FreeGameFonts();
+extern void FreeGameFonts();
 
 #endif // FONT_H

@@ -17,18 +17,18 @@ extern tLanguage g_Language_id_007537ac;
 extern bool g_Language_is_japanese;
 
 
-void SetLanguageDataPath();
+extern void SetLanguageDataPath();
 
-const char *GetTranslatedString(const char *uid);
+extern const char *GetTranslatedString(const char *uid);
 
-void InitLanguageFilePath(tLanguage language);
+extern void InitLanguageFilePath(tLanguage language);
 
-void InitDirectionTexts();
+extern void InitDirectionTexts();
 
-void FreeLanguageData();
+extern void FreeLanguageData();
 
-u16 DecodeCharacterPointer(const char **text);
+extern u16 DecodeCharacterPointer(const char **text);
 
-bool IsTranslated();
+extern bool IsTranslated();
 
 #endif // TEXT_H

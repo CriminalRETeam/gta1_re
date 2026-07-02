@@ -101,25 +101,25 @@ tFont *g_Font_score;
 tFont *g_Font_missmul;
 
 // GLOBAL: GTA 0x0078515c;
-BOOL g_Font_big_loaded;
+b32 g_Font_big_loaded;
 
 // GLBOAL: GTA 0x00785154
-BOOL g_Font_sub_loaded;
+b32 g_Font_sub_loaded;
 
 // GLOBAL: GTA 0x0078514c
-BOOL g_Font_missmul_loaded;
+b32 g_Font_missmul_loaded;
 
 // GLOBAL: GTA 0x0078512c
-BOOL g_Font_street_loaded;
+b32 g_Font_street_loaded;
 
 // GLOBAL: GTA 0x00785134
-BOOL g_Font_pager_loaded;
+b32 g_Font_pager_loaded;
 
 // GLOBAL: GTA 0x0078513c
-BOOL g_Font_expscor_loaded;
+b32 g_Font_expscor_loaded;
 
 // GLOBAL: GTA 0x00785144
-BOOL g_Font_score_loaded;
+b32 g_Font_score_loaded;
 
 
 // FUNCTION: GTA 0x0042d2c0

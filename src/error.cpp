@@ -37,11 +37,9 @@ void SetCurrentLoadFilePath(const char *path) {
     strcpy(g_Current_file_path, path);
 }
 
-#include <SDL3/SDL.h>
-
 // FUNCTION: GTA 0x00422900
 void FatalError(tError error, int location, ...) {
-    SDL_TriggerBreakpoint();
+    TRIGGER_BREAKPOINT();
 
     if (g_Error_state == 0 || g_Error_state == 1) {
         strcpy(g_Error_temp_path, g_Current_file_path);
@@ -71,8 +69,8 @@ void FatalError(tError error, int location, ...) {
 // FUNCTION: GTA 0x004229e0
 void ShowErrorMessage(tError error, int location, ...) {
     char message_buffer[80];
-    BOOL read_error;
-    BOOL network_error;
+    b32 read_error;
+    b32 network_error;
     va_list ap;
     int extra;
     uintptr_t arg;
@@ -104,7 +102,7 @@ void ShowErrorMessage(tError error, int location, ...) {
 }
 
 // STUB: GTA 0x00422b90
-void FormatErrorMessage(tError error, char *buffer, BOOL *read_error, BOOL *network_error, ...) {
+void FormatErrorMessage(tError error, char *buffer, b32 *read_error, b32 *network_error, ...) {
     *read_error = FALSE;
     *network_error = FALSE;
     NOT_IMPLEMENTED();

@@ -8,100 +8,100 @@
 #include <mgraph.h>
 
 // GLOBAL: GTA 0x00502f6c
-BOOL g_BOOL_00502f6c;
+b32 g_BOOL_00502f6c;
 
 // GLOBAL: GTA 0x00502f58
-BOOL g_BOOL_00502f58;
+b32 g_BOOL_00502f58;
 
 // GLOBAL: GTA 0x00503180
-BOOL g_BOOL_00503180;
+b32 g_BOOL_00503180;
 
 // GLOBAL: GTA 0x00502f70
-BOOL g_BOOL_00502f70;
+b32 g_BOOL_00502f70;
 
 // GLOBAL: GTA 0x005031cc
-BOOL g_BOOL_005031cc;
+b32 g_BOOL_005031cc;
 
 // GLOBAL: GTA 0x005031c8
-BOOL g_BOOL_005031c8;
+b32 g_BOOL_005031c8;
 
 // GLOBAL: GTA 0x0050319c
-BOOL g_BOOL_0050319c;
+b32 g_BOOL_0050319c;
 
 // GLOBAL: GTA 0x00502f68
-BOOL g_BOOL_00502f68;
+b32 g_BOOL_00502f68;
 
 // GLOBAL: GTA 0x00502f40
-BOOL g_BOOL_00502f40;
+b32 g_BOOL_00502f40;
 
 // GLOBAL: GTA 0x005031a4
-BOOL g_BOOL_005031a4;
+b32 g_BOOL_005031a4;
 
 // GLOBAL: GTA 0x00502f50
-BOOL g_BOOL_00502f50;
+b32 g_BOOL_00502f50;
 
 // GLOBAL: GTA 0x005031a0
-BOOL g_BOOL_005031a0;
+b32 g_BOOL_005031a0;
 
 // GLOBAL: GTA 0x00502f64
-BOOL g_BOOL_00502f64;
+b32 g_BOOL_00502f64;
 
 // GLOBAL: GTA 0x00502f48
-BOOL g_BOOL_00502f48;
+b32 g_BOOL_00502f48;
 
 // GLOBAL: GTA 0x005031f0
-BOOL g_BOOL_005031f0;
+b32 g_BOOL_005031f0;
 
 // GLOBAL: GTA 0x00503190
-BOOL g_BOOL_00503190;
+b32 g_BOOL_00503190;
 
 // GLOBAL: GTA 0x005031b8
-BOOL g_BOOL_005031b8;
+b32 g_BOOL_005031b8;
 
 // GLOBAL: GTA 0x005031dc
-BOOL g_BOOL_005031dc;
+b32 g_BOOL_005031dc;
 
 // GLOBAL: GTA 0x00502f54
-BOOL g_BOOL_00502f54;
+b32 g_BOOL_00502f54;
 
 // GLOBAL: GTA 0x00502f44
-BOOL g_BOOL_00502f44;
+b32 g_BOOL_00502f44;
 
 // GLOBAL: GTA 0x00502f3c
-BOOL g_BOOL_00502f3c;
+b32 g_BOOL_00502f3c;
 
 // GLOBAL: GTA 0x005031e0
-BOOL g_BOOL_005031e0;
+b32 g_BOOL_005031e0;
 
 // GLOBAL: GTA 0x00502f5c
-BOOL g_Multiplayer_available;
+b32 g_Multiplayer_available;
 
 // GLOBAL: GTA 0x00503178
-BOOL g_BOOL_00503178;
+b32 g_BOOL_00503178;
 
 // GLOBAL: GTA 0x00502f60
-BOOL g_BOOL_00502f60;
+b32 g_BOOL_00502f60;
 
 // GLOBAL: GTA 0x00503188
-BOOL g_BOOL_00503188;
+b32 g_BOOL_00503188;
 
 // GLOBAL: GTA 0x00502f38
-BOOL g_BOOL_00502f38;
+b32 g_BOOL_00502f38;
 
 // GLOBAL: GTA 0x005031d0
-BOOL g_BOOL_005031d0;
+b32 g_BOOL_005031d0;
 
 // GLOBAL: GTA 0x00503194
-BOOL g_Debug_mode;
+b32 g_Debug_mode;
 
 // GLOBAL: GTA 0x005031e8
-BOOL g_BOOL_005031e8;
+b32 g_BOOL_005031e8;
 
 // GLOBAL: GTA 0x00502f4c
-BOOL g_BOOL_00502f4c;
+b32 g_BOOL_00502f4c;
 
 // GLOBAL: GTA 0x005031e4
-BOOL g_Transparency_effects;
+b32 g_Transparency_effects;
 
 // GLOBAL: GTA 0x005031e6
 bool g_BOOL_005031e6;
@@ -145,12 +145,12 @@ int g_INT_004b3614 = 2;
 
 // FUNCTION: GTA 0x005031d8
 void ConfigureGameOptions(
-        BOOL param_1,  BOOL param_2,  BOOL param_3,  BOOL param_4,  BOOL param_5,  BOOL param_6,
-        BOOL param_7,  BOOL param_8,  BOOL param_9,  BOOL param_10, BOOL param_11, BOOL param_12,
-        BOOL param_13, BOOL param_14, BOOL param_15, BOOL param_16, BOOL param_17, BOOL param_18,
-        BOOL param_19, BOOL param_20, BOOL param_21, BOOL param_22, BOOL param_23, BOOL param_24,
-        BOOL param_25, BOOL param_26, BOOL param_27, BOOL param_28, BOOL param_29, BOOL param_30,
-        BOOL param_31, BOOL param_32, int param_33,  bool param_34, bool param_35, bool param_36,
+        b32 param_1,  b32 param_2,  b32 param_3,  b32 param_4,  b32 param_5,  b32 param_6,
+        b32 param_7,  b32 param_8,  b32 param_9,  b32 param_10, b32 param_11, b32 param_12,
+        b32 param_13, b32 param_14, b32 param_15, b32 param_16, b32 param_17, b32 param_18,
+        b32 param_19, b32 param_20, b32 param_21, b32 param_22, b32 param_23, b32 param_24,
+        b32 param_25, b32 param_26, b32 param_27, b32 param_28, b32 param_29, b32 param_30,
+        b32 param_31, b32 param_32, int param_33,  bool param_34, bool param_35, bool param_36,
         bool param_37, bool param_38, bool param_39, bool param_40, bool param_41, bool demo_version,
         bool param_43) {
     g_BOOL_00502f6c = param_4;

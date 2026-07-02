@@ -23,8 +23,8 @@ extern int g_Cut_scene_animation_positions[6][4][2];
 extern const char *g_Cut_text_names[6][4];
 
 
-void PlayDMAIntro();
+extern void PlayDMAIntro();
 
-void LoadCutscenePixelmap(const char *path);
+extern void LoadCutscenePixelmap(const char *path);
 
 #endif

@@ -99,12 +99,12 @@ extern tPixelmap g_Menu_lowers[2];
 extern tRect g_Menu_viewport;;
 
 
-void InitPlayerData();
+extern void InitPlayerData();
 
-void InitMenus(tMenu_index menu);
+extern void InitMenus(tMenu_index menu);
 
-void UnloadMenuLogos();
+extern void UnloadMenuLogos();
 
-tMenu_result DoMenuStep(tMenu_action action);
+extern tMenu_result DoMenuStep(tMenu_action action);
 
 #endif // MENU_H

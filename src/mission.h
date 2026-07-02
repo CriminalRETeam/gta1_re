@@ -24,12 +24,12 @@ struct tMission_info {
     undefined field_0x77;
 };
 
-void DebugPrint(const char *message);
+extern void DebugPrint(const char *message);
 
-void SetCurrentMission(int mission);
+extern void SetCurrentMission(int mission);
 
-void LoadMission();
+extern void LoadMission();
 
-void FreeMission();
+extern void FreeMission();
 
 #endif // MISSION_H

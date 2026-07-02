@@ -68,7 +68,7 @@ int g_Screen_height;
 int g_Count_available_pages;
 
 // GLOBAL: GTA 0x004ac06c
-BOOL g_No_cutscene_video_mode = TRUE;
+b32 g_No_cutscene_video_mode = TRUE;
 
 // GLOBAL: GTA 0x004b8850
 struct tShort_window_range{
@@ -709,7 +709,7 @@ void BlitTextCenterAligned(tFont *font, const char *text, int x, int y, int widt
 }
 
 // FUNCTION: GTA 0x0042d8e0
-void BlitMenuBackground(BOOL animating_upper_logo, int lower_index) {
+void BlitMenuBackground(b32 animating_upper_logo, int lower_index) {
     long lVar1;
     uint uVar2;
     int iVar3;

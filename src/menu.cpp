@@ -123,7 +123,7 @@ void InitializePixelmap(tPixelmap *pixelmap, int w, int h) {
 int g_Cutscene_index;
 
 // GLOBAL: GTA 0x005110fc
-BOOL g_Menu_is_multiplayer;
+b32 g_Menu_is_multiplayer;
 
 // GLOBAL: GTA 0x00513230
 tEndOfRace_result g_End_of_game_result;
@@ -159,10 +159,10 @@ bool g_Menu_player_has_won[4];
 int g_Post_game_summary_game_result;
 
 // GLOBAL: GTA 0x00511078
-BOOL g_Current_menu_updated;
+b32 g_Current_menu_updated;
 
 // GLOBAL: GTA 0x005110a0
-BOOL g_Selected_menu_option;
+b32 g_Selected_menu_option;
 
 // GLOBAL: GTA 0x00510760
 char g_Menu_error_buffer[256];
@@ -367,7 +367,7 @@ tNetwork_waiting_room_state g_Multiplayer_waiting_room_state;
 tNetwork_waiting_room_state g_Multiplayer_room_status;
 
 // GLOBAL: GTA 0x004af414
-BOOL g_Multiplayer_BOOL_004af414 = TRUE;
+b32 g_Multiplayer_BOOL_004af414 = TRUE;
 
 // GLOBAL: GTA 0x0051110c
 int g_Current_multiplayer_session_index;
@@ -708,7 +708,7 @@ void UnloadMenuLogos() {
 }
 
 // FUNCTION: GTA 0x00429f60
-void BlitProfilePictureAndText(int x, int y, int profile, const char *name, BOOL draw_nav) {
+void BlitProfilePictureAndText(int x, int y, int profile, const char *name, b32 draw_nav) {
     if (profile < 0) {
         profile = 8 - (8 - profile) & 0x7;
     }
@@ -950,7 +950,7 @@ void DoLoadMenu(tMenu_action) {
 // STUB: GTA 0x00428ee0
 void DoMainMenu(tMenu_action action) {
     // FIXME
-    BOOL multiplayer_available = IsMultiplayerAvailable();
+    b32 multiplayer_available = IsMultiplayerAvailable();
     if (g_Demo_version) {
         multiplayer_available = FALSE;
     }

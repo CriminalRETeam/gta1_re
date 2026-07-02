@@ -260,55 +260,55 @@ extern int g_Multiplayer_player_id;
 
 struct tDirectPlay_multiplayer {
     DPID player_id;
-    BOOL valid;
+    b32 valid;
 };
 
-void InitMultiplayer();
+extern void InitMultiplayer();
 
-void InitMultiplayerBackend();
+extern void InitMultiplayerBackend();
 
-void InitDirectPlay();
+extern void InitDirectPlay();
 
-void SetMultiplayerProfileName(int index, const char *name, u8 profile_index);
+extern void SetMultiplayerProfileName(int index, const char *name, u8 profile_index);
 
-void SetPlayerScreenDimension(int player, int width, int height);
+extern void SetPlayerScreenDimension(int player, int width, int height);
 
-int GetMultiplayerScore_00462b70(int player);
+extern int GetMultiplayerScore_00462b70(int player);
 
-int GetMultiplayerScore_004643b0(int player);
+extern int GetMultiplayerScore_004643b0(int player);
 
-const char *GetMultiplayerName(int player);
+extern const char *GetMultiplayerName(int player);
 
-int GetMultiplayerFrags(int player);
+extern int GetMultiplayerFrags(int player);
 
-int GetMultiplayerRacePosition(int player);
+extern int GetMultiplayerRacePosition(int player);
 
-int GetEndOfMultiplayerGameResult(char *buffer);
+extern int GetEndOfMultiplayerGameResult(char *buffer);
 
-void SetNotConnectedState();
+extern void SetNotConnectedState();
 
-void InitMultiplayerPlayerCounts();
+extern void InitMultiplayerPlayerCounts();
 
-void DestroyMultiplayer();
+extern void DestroyMultiplayer();
 
-BOOL IsMultiplayerAvailable();
+extern b32 IsMultiplayerAvailable();
 
-void Multiplayer_FUN_0044b8a0(int arg);
+extern void Multiplayer_FUN_0044b8a0(int arg);
 
-BOOL EnumerateMultiplayerProviders();
+extern b32 EnumerateMultiplayerProviders();
 
-int GetCountMultiplayerProviders();
+extern int GetCountMultiplayerProviders();
 
-const char *GetMultiplayerProviderName(int provider_index);
+extern const char *GetMultiplayerProviderName(int provider_index);
 
-int GetCountMultiplayerSessions();
+extern int GetCountMultiplayerSessions();
 
-BOOL ConnectMultiplayerProvider(int provider_index);
+extern b32 ConnectMultiplayerProvider(int provider_index);
 
-BOOL FindMultiplayerSessions();
+extern b32 FindMultiplayerSessions();
 
-BOOL CreateMultiplayerSession(char *session_name);
+extern b32 CreateMultiplayerSession(char *session_name);
 
-BOOL RegisterMultiplayerPlayer(char *name);
+extern b32 RegisterMultiplayerPlayer(char *name);
 
 #endif // MULTIPLAYER_H

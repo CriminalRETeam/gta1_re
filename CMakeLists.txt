@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.27)
 project(regta C CXX)
 
 include(CMakeDependentOption)
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/reccmp.cmake")
+
+cmake_dependent_option(GTA_MATCHING_BUILD ON "Create matching build" "MSVC;CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 12.00;CMAKE_CXX_COMPILER_VERSION VERSION_LESS 13.00" OFF)
 
 option(MGL_ON_SDL3 "Run MGL on top of SDL3" ON)
 
@@ -10,8 +13,8 @@ if(CMAKE_C_COMPILER_ID MATCHES "MSVC" AND CMAKE_C_COMPILER_VERSION VERSION_LESS 
     add_compile_definitions("-Dinline=__inline")
     add_compile_definitions("-D__func__=\"FUNC\"")
     add_compile_definitions("-DWINBOOL=int")
-    add_link_options("/FIXED")
-    add_link_options("/INCREMENTAL:NO")
+    add_link_options("-FIXED")
+    add_link_options("-INCREMENTAL:NO")
 endif()
 
 if(WIN32)
@@ -45,6 +48,7 @@ if(MGL_ON_SDL3)
     find_package(SDL3 REQUIRED CONFIG COMPONENTS SDL3-shared)
     add_subdirectory(mgl-on-sdl3 EXCLUDE_FROM_ALL)
     add_library(MGL::MGL ALIAS mgl_on_sdl3)
+    add_definitions(-DMGL_ON_SDL3)
 else()
     if(WIN32)
         add_library(MGL::MGL STATIC IMPORTED)
@@ -94,6 +98,7 @@ add_executable(regta WIN32
     src/util.cpp
     src/util.h
 )
+reccmp_add_target(regta ID GTA)
 target_link_libraries(regta PRIVATE MGL::MGL)
 target_link_libraries(regta PRIVATE Miles::Miles)
 target_link_libraries(regta PRIVATE Smack::Smack)
@@ -120,3 +125,5 @@ if(CMAKE_C_COMPILER_ID STREQUAL "MSVC")
         target_compile_options(regta PRIVATE "-GX")
     endif()
 endif()
+
+reccmp_configure()

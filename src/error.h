@@ -1,9 +1,7 @@
 #ifndef ERROR_H
 #define ERROR_H
 
-#include <windows.h>
-
-#include "compat.h"
+#include "common.h"
 
 
 enum tError {
@@ -325,18 +323,18 @@ enum tError {
 extern char g_Current_file_path[256];
 
 
-void InitError();
+extern void InitError();
 
-void QuitError();
+extern void QuitError();
 
-void SetCurrentLoadFilePath(const char *path);
+extern void SetCurrentLoadFilePath(const char *path);
 
-void FatalError(tError error, int location, ...);
+extern void FatalError(tError error, int location, ...);
 
-void ShowErrorMessage(tError error, int location, ...);
+extern void ShowErrorMessage(tError error, int location, ...);
 
-void FormatErrorMessage(tError error, char *buffer, BOOL *read_error, BOOL *network_error, ...);
+extern void FormatErrorMessage(tError error, char *buffer, b32 *read_error, b32 *network_error, ...);
 
-void FreeOnError(void);
+extern void FreeOnError(void);
 
 #endif // ERROR_H

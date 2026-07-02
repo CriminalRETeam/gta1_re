@@ -55,10 +55,10 @@ const u8 g_Joystick_capability_flags[4] = {1, 2, 4, 8};
 undefined4 g_Input_scancodes[10];
 
 // GLOBAL: GTA 0x00513654
-BOOL g_Input_with_joystick;
+b32 g_Input_with_joystick;
 
 // GLOBAL: GTA 0x005134e0
-BOOL g_Input_with_keyboard;
+b32 g_Input_with_keyboard;
 
 // GLOBAL: GTA 0x005031f4
 bool g_BOOL_005031f4;

@@ -10,7 +10,7 @@
 FILE *g_File;
 
 // GLOBAL: GTA 0x00511958
-BOOL g_File_opened;
+b32 g_File_opened;
 
 
 // FUNCTION: GTA 0x0043cc00

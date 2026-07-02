@@ -7,46 +7,46 @@
 
 extern HDIGDRIVER g_Miles_device;
 
-void ApplySoundVolumes();
+extern void ApplySoundVolumes();
 
-void SetSoundEnabled(bool enabled);
+extern void SetSoundEnabled(bool enabled);
 
-void SetMusicEnabled(bool enabled);
+extern void SetMusicEnabled(bool enabled);
 
-void SetMasterSoundVolumePreset(s8 preset);
+extern void SetMasterSoundVolumePreset(s8 preset);
 
-void SetMasterMusicVolumePreset(s8 preset);
+extern void SetMasterMusicVolumePreset(s8 preset);
 
-void SetSoundVolume(u8 level);
+extern void SetSoundVolume(u8 level);
 
-void SetMusicVolume(u8 volume, bool enable);
+extern void SetMusicVolume(u8 volume, bool enable);
 
-bool StartMilesSoundForIntro();
+extern bool StartMilesSoundForIntro();
 
-void StopMilesForIntro();
+extern void StopMilesForIntro();
 
-void StartMenuAudio();
+extern void StartMenuAudio();
 
-void StartMusicForCutscene(int mission);
+extern void StartMusicForCutscene(int mission);
 
-void FreeMilesBuffers();
+extern void FreeMilesBuffers();
 
-void FreeMilesBuffers();
+extern void FreeMilesBuffers();
 
-int GetCutsceneAudioPosition();
+extern int GetCutsceneAudioPosition();
 
-void StopCutsceneMusic();
+extern void StopCutsceneMusic();
 
-void PlayMenuSound(int index);
+extern void PlayMenuSound(int index);
 
-void ServiceMusic();
+extern void ServiceMusic();
 
-void StopAndReleaseSpeedLimiter();
+extern void StopAndReleaseSpeedLimiter();
 
-void StopAudio();
+extern void StopAudio();
 
-void PlaySample(int sample);
+extern void PlaySample(int sample);
 
-void SetAlwaysMusic(BOOL always_music);
+extern void SetAlwaysMusic(b32 always_music);
 
 #endif // SOUND_H

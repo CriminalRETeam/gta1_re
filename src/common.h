@@ -13,6 +13,15 @@ typedef signed _int64 s64;
 typedef signed long long int s64;
 #endif
 
+typedef u32 b32;
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+#ifndef TRUE
+#define TRUE 1
+#endif
+
 #define GTA_ASIZE(ARR) (sizeof(ARR) / sizeof(ARR[0]))
 
 #endif // COMMON_H

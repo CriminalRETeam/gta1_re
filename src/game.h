@@ -36,69 +36,69 @@ enum tGame_result {
     eGameRC_svga_error = 5,
 };
 
-extern BOOL g_BOOL_00502f6c;
+extern b32 g_BOOL_00502f6c;
 
-extern BOOL g_BOOL_00502f58;
+extern b32 g_BOOL_00502f58;
 
-extern BOOL g_BOOL_00503180;
+extern b32 g_BOOL_00503180;
 
-extern BOOL g_BOOL_00502f70;
+extern b32 g_BOOL_00502f70;
 
-extern BOOL g_BOOL_005031cc;
+extern b32 g_BOOL_005031cc;
 
-extern BOOL g_BOOL_005031c8;
+extern b32 g_BOOL_005031c8;
 
-extern BOOL g_BOOL_0050319c;
+extern b32 g_BOOL_0050319c;
 
-extern BOOL g_BOOL_00502f68;
+extern b32 g_BOOL_00502f68;
 
-extern BOOL g_BOOL_00502f40;
+extern b32 g_BOOL_00502f40;
 
-extern BOOL g_BOOL_005031a4;
+extern b32 g_BOOL_005031a4;
 
-extern BOOL g_BOOL_00502f50;
+extern b32 g_BOOL_00502f50;
 
-extern BOOL g_BOOL_005031a0;
+extern b32 g_BOOL_005031a0;
 
-extern BOOL g_BOOL_00502f64;
+extern b32 g_BOOL_00502f64;
 
-extern BOOL g_BOOL_00502f48;
+extern b32 g_BOOL_00502f48;
 
-extern BOOL g_BOOL_005031f0;
+extern b32 g_BOOL_005031f0;
 
-extern BOOL g_BOOL_00503190;
+extern b32 g_BOOL_00503190;
 
-extern BOOL g_BOOL_005031b8;
+extern b32 g_BOOL_005031b8;
 
-extern BOOL g_BOOL_005031dc;
+extern b32 g_BOOL_005031dc;
 
-extern BOOL g_BOOL_00502f54;
+extern b32 g_BOOL_00502f54;
 
-extern BOOL g_BOOL_00502f44;
+extern b32 g_BOOL_00502f44;
 
-extern BOOL g_BOOL_00502f3c;
+extern b32 g_BOOL_00502f3c;
 
-extern BOOL g_BOOL_005031e0;
+extern b32 g_BOOL_005031e0;
 
-extern BOOL g_Multiplayer_available;
+extern b32 g_Multiplayer_available;
 
-extern BOOL g_BOOL_00503178;
+extern b32 g_BOOL_00503178;
 
-extern BOOL g_BOOL_00502f60;
+extern b32 g_BOOL_00502f60;
 
-extern BOOL g_BOOL_00503188;
+extern b32 g_BOOL_00503188;
 
-extern BOOL g_BOOL_00502f38;
+extern b32 g_BOOL_00502f38;
 
-extern BOOL g_BOOL_005031d0;
+extern b32 g_BOOL_005031d0;
 
-extern BOOL g_Debug_mode;
+extern b32 g_Debug_mode;
 
-extern BOOL g_BOOL_005031e8;
+extern b32 g_BOOL_005031e8;
 
-extern BOOL g_BOOL_00502f4c;
+extern b32 g_BOOL_00502f4c;
 
-extern BOOL g_Transparency_effects;
+extern b32 g_Transparency_effects;
 
 extern bool g_BOOL_005031e6;
 
@@ -122,25 +122,25 @@ extern bool g_Enable_music;
 
 extern bool g_All_weapons;
 
-void ConfigureGameOptions(
-        BOOL param_1,  BOOL param_2,  BOOL param_3,  BOOL param_4,  BOOL param_5,  BOOL param_6,
-        BOOL param_7,  BOOL param_8,  BOOL param_9,  BOOL param_10, BOOL param_11, BOOL param_12,
-        BOOL param_13, BOOL param_14, BOOL param_15, BOOL param_16, BOOL param_17, BOOL param_18,
-        BOOL param_19, BOOL param_20, BOOL param_21, BOOL param_22, BOOL param_23, BOOL param_24,
-        BOOL param_25, BOOL param_26, BOOL param_27, BOOL param_28, BOOL param_29, BOOL param_30,
-        BOOL param_31, BOOL param_32, int param_33,  bool param_34, bool param_35, bool param_36,
+extern void ConfigureGameOptions(
+        b32 param_1,  b32 param_2,  b32 param_3,  b32 param_4,  b32 param_5,  b32 param_6,
+        b32 param_7,  b32 param_8,  b32 param_9,  b32 param_10, b32 param_11, b32 param_12,
+        b32 param_13, b32 param_14, b32 param_15, b32 param_16, b32 param_17, b32 param_18,
+        b32 param_19, b32 param_20, b32 param_21, b32 param_22, b32 param_23, b32 param_24,
+        b32 param_25, b32 param_26, b32 param_27, b32 param_28, b32 param_29, b32 param_30,
+        b32 param_31, b32 param_32, int param_33,  bool param_34, bool param_35, bool param_36,
         bool param_37, bool param_38, bool param_39, bool param_40, bool param_41, bool demo_version,
         bool param_43);
 
-void ProcessEvents();
+extern void ProcessEvents();
 
 // x07f: scancode
 // 0x080: key up
 // 0x100: navigation key (KP0,1,2,3,4,6,7,8,9,0,.)
-u32 KeyboardEvent();
+extern u32 KeyboardEvent();
 
-tGame_result DoGame();
+extern tGame_result DoGame();
 
-void SetTextSpeed(int text_speed);
+extern void SetTextSpeed(int text_speed);
 
 #endif // GAME_H

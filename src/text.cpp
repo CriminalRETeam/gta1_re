@@ -14,7 +14,7 @@ tLanguage g_Language_id_007537ac;
 tLanguage g_Language_id_00775554;
 
 // GLOBAL: GTA 0x00775550
-BOOL g_Translated_strings_loaded;
+b32 g_Translated_strings_loaded;
 
 // GLOBAL: GTA 0x00775558
 bool g_Language_is_japanese;

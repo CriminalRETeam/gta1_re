@@ -4,6 +4,7 @@
 #include "util.h"
 
 #include <stdio.h>
+#include <string.h>
 
 // GLOBAL: GTA 0x006b3e28
 int g_Current_mission_index;

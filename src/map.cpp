@@ -7,13 +7,13 @@
 u8 g_Map_name_priority;
 
 // GLOBAL: GTA 0x005bfbf0
-BOOL g_Map_name_specified;
+b32 g_Map_name_specified;
 
 // GLOBAL: GTA 0x007750c4
 u8 g_Style_priority;
 
 // GLOBAL: GTA 0x007752d8
-BOOL g_Style_index;
+b32 g_Style_index;
 
 // GLOBAL: GTA 0x005c1c34
 char g_Map_name[20];
@@ -31,13 +31,13 @@ void *g_Style_memory_3;
 void *g_Style_memory_4;
 
 // GLOBAL: GTA 0x00775538
-BOOL g_Style_memory_1_allocated;
+b32 g_Style_memory_1_allocated;
 
 // GLOBAL: GTA 0x0077553c
-BOOL g_Style_memory_2_allocated;
+b32 g_Style_memory_2_allocated;
 
 // GLOBAL: GTA 0x00775540
-BOOL g_Style_memory_3_allocated;
+b32 g_Style_memory_3_allocated;
 
 // GLOBAL: GTA 0x00775544
 bool g_Style_memory_4_allocated;

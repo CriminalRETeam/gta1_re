@@ -65,53 +65,53 @@ extern int g_Mode_blue_adjust;
 
 extern int g_Mode_blue_pos;
 
-extern BOOL g_No_cutscene_video_mode;
+extern b32 g_No_cutscene_video_mode;
 
 
-void InitGraphDriver(HINSTANCE *hInstance);
+extern void InitGraphDriver(HINSTANCE *hInstance);
 
-void AddAvailableMode(tAvailable_mode_list **list, int *mode, int *x_rel, int *y_rel, int *bpp);
+extern void AddAvailableMode(tAvailable_mode_list **list, int *mode, int *x_rel, int *y_rel, int *bpp);
 
-//LRESULT CALLBACK FilterEventProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+//extern LRESULT CALLBACK FilterEventProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-void QuitGraphics();
+extern void QuitGraphics();
 
-void SelectSuitableGraphicsMode(u8 *mode);
+extern void SelectSuitableGraphicsMode(u8 *mode);
 
-void ConfigureDisplay2(int mode);
+extern void ConfigureDisplay2(int mode);
 
-void SwapScreenBuffer();
+extern void SwapScreenBuffer();
 
-void LoadPixelmap(tPixelmap *pixelmap, const char *base_path, int inverse8);
+extern void LoadPixelmap(tPixelmap *pixelmap, const char *base_path, int inverse8);
 
-void FreePixelmap(tPixelmap *map);
+extern void FreePixelmap(tPixelmap *map);
 
-u8 GetSuitableGraphicsMode();
+extern u8 GetSuitableGraphicsMode();
 
-void FreeMenuBuffers();
+extern void FreeMenuBuffers();
 
-void ClearScreenOrCopyCutscene(int mode);
+extern void ClearScreenOrCopyCutscene(int mode);
 
-void BlitTextWithKanjiToScreen(tFont *font, int x, int y, const char *text);
+extern void BlitTextWithKanjiToScreen(tFont *font, int x, int y, const char *text);
 
-void BlitTextCenterAligned(tFont *font, const char *text, int x, int y, int width);
+extern void BlitTextCenterAligned(tFont *font, const char *text, int x, int y, int width);
 
-void BlitMenuBackground(BOOL animating_upper_logo, int lower_index);
+extern void BlitMenuBackground(b32 animating_upper_logo, int lower_index);
 
-void BlitHeadTextCentered(int y, const char *text);
+extern void BlitHeadTextCentered(int y, const char *text);
 
-void BlitMultilineText(tFont *font, int x, int y, int width, const char *text);
+extern void BlitMultilineText(tFont *font, int x, int y, int width, const char *text);
 
-void BlitMenuViewportClippedTextLine(tFont *font, int x, int y, const char *text);
+extern void BlitMenuViewportClippedTextLine(tFont *font, int x, int y, const char *text);
 
-void DrawMenuOptionWithMaybeKey_216(int row, int selected_row, const char *text);
+extern void DrawMenuOptionWithMaybeKey_216(int row, int selected_row, const char *text);
 
-void DrawMenuOptionWithMaybeKey_224(int row, int selected_row, const char *text);
+extern void DrawMenuOptionWithMaybeKey_224(int row, int selected_row, const char *text);
 
-void DrawMultiplayerConnectionNameToScreen(int row, int selected_row, const char *text);
+extern void DrawMultiplayerConnectionNameToScreen(int row, int selected_row, const char *text);
 
-void BlitPixelmap(int x, int y, tPixelmap *src);
+extern void BlitPixelmap(int x, int y, tPixelmap *src);
 
-void BlitTextToScreen(tFont *font, int x, int y, const char *text);
+extern void BlitTextToScreen(tFont *font, int x, int y, const char *text);
 
 #endif // GRAPHICS_H

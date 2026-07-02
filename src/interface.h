@@ -120,6 +120,6 @@ extern const char *g_Message_commsversionerror;
 extern char g_Load_temporary_buffer[256];
 
 
-void InitInterfaceStrings();
+extern void InitInterfaceStrings();
 
 #endif // INTERFACE_H

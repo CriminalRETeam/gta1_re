@@ -43,7 +43,7 @@ tStream_play_track_info g_Audio_track_infos_2[9];
 bool g_Music_initialized;
 
 // GLOBAL: GTA 0x00501aa4
-BOOL g_Always_music;
+b32 g_Always_music;
 
 // GLBOAL: GTA 0x00501aac
 int g_Music_state;
@@ -201,7 +201,7 @@ int g_INT_004ab2e4 = 25;
 HTIMER g_Audio_timer;
 
 // GLOBAL: GTA 0x00775584
-BOOL g_Speed_limiter_active;
+b32 g_Speed_limiter_active;
 
 
 // FUNCTION: GTA 0x00471e80
@@ -894,6 +894,6 @@ void StopAudio() {
 }
 
 // FUNCTION: GTA 0x0040d620
-void SetAlwaysMusic(BOOL always_music) {
+void SetAlwaysMusic(b32 always_music) {
     g_Always_music = !!always_music;
 }

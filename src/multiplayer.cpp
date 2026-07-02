@@ -34,10 +34,10 @@ static const GUID g_GTA_Game_GUID =
 tConnection_state g_Connection_state;
 
 // GLOBAL: GTA 0x00501d78
-BOOL g_DirectPlay_started;
+b32 g_DirectPlay_started;
 
 // GLOBAL: GTA 0x007852c8
-BOOL g_BOOL_007852c8;
+b32 g_BOOL_007852c8;
 
 // GLOBAL: GTA 0x00785180
 tMultiplayer_session *g_Multiplayer_sessions;
@@ -52,7 +52,7 @@ LPDIRECTPLAY g_DirectPlay;
 DPID g_DirectPlay_player_id;
 
 // GLOBAL: GTA 0x007851bc
-BOOL g_DirectPlay_player_created;
+b32 g_DirectPlay_player_created;
 
 // GLOBAL: GTA 0x007851c0
 LPDIRECTPLAY2 g_DirectPlay2;
@@ -85,7 +85,7 @@ tDirectPlay_multiplayer g_DirectPlay_multiplayers[4];
 int g_Count_multi_players;
 
 // GLOBAL: GTA 0x007851b4
-BOOL g_DirectPlay_failed;
+b32 g_DirectPlay_failed;
 
 // GLOBAL: GTA 0x006b4064
 int g_INT_006b4064;
@@ -291,7 +291,7 @@ void InitMultiplayerPlayerCounts() {
     }
 }
 
-static BOOL inline CheckDirectPlayResult(HRESULT result) {
+static b32 inline CheckDirectPlayResult(HRESULT result) {
     switch (result) {
         case DP_OK:
         case DPERR_USERCANCEL:
@@ -342,7 +342,7 @@ void DestroyMultiplayer() {
 }
 
 // FUNCTION: GTA 0x00412950
-BOOL IsMultiplayerAvailable() {
+b32 IsMultiplayerAvailable() {
     return g_Connection_state != eMultiplayer_unavailable;
 }
 
@@ -364,7 +364,7 @@ WINBOOL CALLBACK MultiplayerProviderCallback(LPGUID lpguidSP, LPSTR lpSPName, DW
 }
 
 // FUNCTION: GTA 0x00486880
-BOOL EnumerateMultiplayerProviders() {
+b32 EnumerateMultiplayerProviders() {
     while (g_Multiplayer_providers != NULL) {
         tMultiplayer_provider *next = g_Multiplayer_providers;
         delete g_Multiplayer_providers->name;
@@ -401,7 +401,7 @@ int GetCountMultiplayerSessions() {
 }
 
 // FUNCTION: GTA 0x004869d0
-BOOL ConnectMultiplayerProvider(int provider_index) {
+b32 ConnectMultiplayerProvider(int provider_index) {
     HRESULT result;
     tMultiplayer_provider *provider = g_Multiplayer_providers;
     while (provider_index > 0) {
@@ -458,7 +458,7 @@ WINBOOL CALLBACK MultiplayerEnumSeessionsCallback(LPCDPSESSIONDESC2 lpThisSD, LP
 }
 
 // FUNCTION: GTA 0x00486b60
-BOOL FindMultiplayerSessions() {
+b32 FindMultiplayerSessions() {
     DPSESSIONDESC2 session_desc;
     memset(&session_desc, 0, sizeof(session_desc));
     session_desc.dwSize = sizeof(session_desc);
@@ -472,13 +472,13 @@ BOOL FindMultiplayerSessions() {
     g_Count_multiplayer_sessions = 0;
     ShowCursor(TRUE);
     HRESULT result = g_DirectPlay2->EnumSessions(&session_desc, 0, MultiplayerEnumSeessionsCallback, NULL, 0);
-    BOOL success = CheckDirectPlayResult(result);
+    b32 success = CheckDirectPlayResult(result);
     ShowCursor(FALSE);
     return success;
 }
 
 // FUNCTION: GTA 0x00486cc0
-BOOL CreateMultiplayerSession(char *session_name) {
+b32 CreateMultiplayerSession(char *session_name) {
     DPSESSIONDESC2 session_desc;
     memset(&session_desc, 0, sizeof(session_desc));
     session_desc.dwSize = sizeof(session_desc);
@@ -503,7 +503,7 @@ BOOL CreateMultiplayerSession(char *session_name) {
 }
 
 // FUNCTION: GTA 0x004870f0
-BOOL RegisterMultiplayerPlayer(char *name) {
+b32 RegisterMultiplayerPlayer(char *name) {
     DPNAME dp_name;
     dp_name.dwSize = sizeof(dp_name);
     dp_name.dwFlags = 0;

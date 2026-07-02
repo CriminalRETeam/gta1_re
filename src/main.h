@@ -1,10 +1,10 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <windows.h>
+#include "common.h"
 
-extern BOOL g_noMenus;
+extern b32 g_noMenus;
 
-int OnOutOfMemory(unsigned int count);
+extern int OnOutOfMemory(unsigned int count);
 
 #endif // MAIN_H

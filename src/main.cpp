@@ -28,10 +28,10 @@
 HANDLE g_GTA_mutex;
 
 // GLOBAL: GTA 0x0054f298
-BOOL g_BOOL_0054f298;
+b32 g_BOOL_0054f298;
 
 // GLOBAL: GTA 0x005031d8
-BOOL g_noMenus;
+b32 g_noMenus;
 
 enum {
     eModKey_LShift = 0x1,

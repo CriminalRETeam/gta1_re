@@ -26,6 +26,6 @@ extern tCity *g_Current_cities;
 extern s16 g_Current_cities_max_index;
 
 
-void UpdateAvailableCitiesCount();
+extern void UpdateAvailableCitiesCount();
 
 #endif //  CITY_H

@@ -13,7 +13,7 @@ struct tJoystickThing {
         s32 avg_flags;
         s32 max_step;
         s32 max_rng;
-        BOOL field_0x14;
+        b32 field_0x14;
     } inputs[6]; // x, y, z, r, u, v
     undefined4 has_u;
     undefined4 has_v;
@@ -32,16 +32,16 @@ enum tReplayBuffer_state {
 
 extern bool g_BOOL_005031f4;
 
-void SetReplayPath(const char *path);
+extern void SetReplayPath(const char *path);
 
-void LoadControlsFromRegister();
+extern void LoadControlsFromRegister();
 
-void GetScancodesFromRegister(undefined4 *keys);
+extern void GetScancodesFromRegister(undefined4 *keys);
 
-const char *GetLanguageSuffix();
+extern const char *GetLanguageSuffix();
 
-void InitInput();
+extern void InitInput();
 
-void FlushReplayBuffer();
+extern void FlushReplayBuffer();
 
 #endif // INPUT_H

@@ -68,6 +68,6 @@ extern tSave_state g_Save_state;
 extern tDefault_profile g_Default_profiles[8];
 
 
-void InitializeSaveState();
+extern void InitializeSaveState();
 
 #endif // SAVE_H

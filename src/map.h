@@ -3,14 +3,14 @@
 
 #include "common.h"
 
-void ResetMapName(void);
+extern void ResetMapName();
 
-void SetMapNameWithPriority(const char *track_filename, u8 priority);
+extern void SetMapNameWithPriority(const char *track_filename, u8 priority);
 
-void SetStyleWithPriority(int style, u8 priority);
+extern void SetStyleWithPriority(int style, u8 priority);
 
-void FreeStyleMemory();
+extern void FreeStyleMemory();
 
-void FreeMapSectors();
+extern void FreeMapSectors();
 
 #endif // MAP_H

@@ -3,8 +3,8 @@
 
 #include "common.h"
 
-void InitFixedSinTanTables();
+extern void InitFixedSinTanTables();
 
-float FixedToFloat(u32 fixed);
+extern float FixedToFloat(u32 fixed);
 
 #endif // MATH_LUT_H
