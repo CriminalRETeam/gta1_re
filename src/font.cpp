@@ -3,6 +3,7 @@
 #include "graphics.h"
 #include "text.h"
 #include "util.h"
+#include "compat.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -187,9 +188,9 @@ void LoadFont(tFont **font, const char *path, undefined2 arg3, bool palette) {
 void LoadRealKanjiFont() {
     if (!g_Kanji_loaded) {
         size_t size_idx;
-        g_Kanji_idx = (u16*)ReadFileToBuffer("..\\gtadata\\kanji.idx", &size_idx);
+        g_Kanji_idx = (u16*)ReadFileToBuffer(".." PSEP "gtadata" PSEP "kanji.idx", &size_idx);
         size_t size_bit;
-        g_Kanji_bit = (tKanji_bit*)ReadFileToBuffer("..\\gtadata\\kanji.bit", &size_bit);
+        g_Kanji_bit = (tKanji_bit*)ReadFileToBuffer(".." PSEP "gtadata" PSEP "kanji.bit", &size_bit);
         g_Kanji_loaded = true;
         g_Kanji_mask = 0xff;
         g_Double_kanji_glyph_buffer = (undefined*)CheckedMalloc(0x440);
@@ -226,21 +227,21 @@ void LoadMenuFonts() {
         LoadKanjiFont2(&g_Dummy_kanji_font);
         g_Dummy_kanji_font_initialized = true;
     }
-    LoadFont(&g_Font_cuttext, "..\\gtadata\\cuttext.fon", 0x21, true);
-    LoadFont(&g_Font_mhead, "..\\gtadata\\f_mhead.fon", 0x21, true);
-    LoadFont(&g_Font_mmis, "..\\gtadata\\f_mmiss.fon", 0x21, true);
-    LoadFont(&g_Font_mtext, "..\\gtadata\\f_mtext.fon", 0x21, true);
-    LoadFont(&g_Font_key, "..\\gtadata\\f_key.fon", 0x1, true);
+    LoadFont(&g_Font_cuttext, ".." PSEP "gtadata" PSEP "cuttext.fon", 0x21, true);
+    LoadFont(&g_Font_mhead, ".." PSEP "gtadata" PSEP "f_mhead.fon", 0x21, true);
+    LoadFont(&g_Font_mmis, ".." PSEP "gtadata" PSEP "f_mmiss.fon", 0x21, true);
+    LoadFont(&g_Font_mtext, ".." PSEP "gtadata" PSEP "f_mtext.fon", 0x21, true);
+    LoadFont(&g_Font_key, ".." PSEP "gtadata" PSEP "f_key.fon", 0x1, true);
     if (g_Pixelformat_type == 0x101) {
-        LoadFont(&g_Font_cities[0], "..\\gtadata\\f8_city1.fon", 0x1, true);
-        LoadFont(&g_Font_cities[1], "..\\gtadata\\f8_city2.fon", 0x1, true);
-        LoadFont(&g_Font_cities[2], "..\\gtadata\\f8_city3.fon", 0x1, true);
-        LoadFont(&g_Font_cities[3], "..\\gtadata\\f8_city4.fon", 0x1, true);
+        LoadFont(&g_Font_cities[0], ".." PSEP "gtadata" PSEP "f8_city1.fon", 0x1, true);
+        LoadFont(&g_Font_cities[1], ".." PSEP "gtadata" PSEP "f8_city2.fon", 0x1, true);
+        LoadFont(&g_Font_cities[2], ".." PSEP "gtadata" PSEP "f8_city3.fon", 0x1, true);
+        LoadFont(&g_Font_cities[3], ".." PSEP "gtadata" PSEP "f8_city4.fon", 0x1, true);
     } else {
-        LoadFont(&g_Font_cities[0], "..\\gtadata\\f_city1.fon", 0x1, true);
-        LoadFont(&g_Font_cities[1], "..\\gtadata\\f_city2.fon", 0x1, true);
-        LoadFont(&g_Font_cities[2], "..\\gtadata\\f_city3.fon", 0x1, true);
-        LoadFont(&g_Font_cities[3], "..\\gtadata\\f_city4.fon", 0x1, true);
+        LoadFont(&g_Font_cities[0], ".." PSEP "gtadata" PSEP "f_city1.fon", 0x1, true);
+        LoadFont(&g_Font_cities[1], ".." PSEP "gtadata" PSEP "f_city2.fon", 0x1, true);
+        LoadFont(&g_Font_cities[2], ".." PSEP "gtadata" PSEP "f_city3.fon", 0x1, true);
+        LoadFont(&g_Font_cities[3], ".." PSEP "gtadata" PSEP "f_city4.fon", 0x1, true);
     }
 }
 

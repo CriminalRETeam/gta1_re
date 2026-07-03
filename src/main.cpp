@@ -22,10 +22,10 @@
 #include <sys/types.h>
 #include <sys/timeb.h>
 
-#include <windows.h>
-
+#ifdef _WIN32
 // GLOBAL: GTA 0x0054f294
 HANDLE g_GTA_mutex;
+#endif
 
 // GLOBAL: GTA 0x0054f298
 b32 g_BOOL_0054f298;
@@ -47,17 +47,43 @@ char g_Oem_keys_to_ascii[84] = {
     'z',    'x',    'c',    'v',    'b',    'n',    'm',
 };
 
+// FUNCTION: GTA 0x004371e0
+void StopAll() {
+    FreeGameFonts();
+    FreeMission();
+    FreeStyleMemory();
+    FreeMapSectors();
+    StopAndReleaseSpeedLimiter();
+    DestroyMultiplayer();
+    DEBUGPRINT_NOARG();
+    StopAudio();
+    FreeMilesBuffers();
+    UnloadKanjiFont();
+    FlushReplayBuffer();
+    FreeLanguageData();
+#ifdef _WIN32
+    ReleaseMutex(g_GTA_mutex);
+#endif
+}
+
+#ifdef _WIN32
 // FUNCTION: GTA 0x00437230
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
 #ifdef _MSC_VER
     _set_new_handler(OnOutOfMemory);
 #endif
+#else
+int main(int argc, char *argv[]) {
+    MGL_HINSTANCE hInstance = NULL;
+#endif
     tMenu_result menu_rc = eMenuRC_continue;
+#ifdef _WIN32
     g_GTA_mutex = CreateMutexA(NULL, TRUE, "Grand Theft Auto");
     if (GetLastError() == ERROR_ALREADY_EXISTS) {
         return 0;
     }
-    InitGraphDriver(&hInstance);
+#endif
+    InitGraphDriver((MGL_HINSTANCE *)&hInstance);
     InitError();
     g_BOOL_0054f298 = FALSE;
     ConfigureGameOptions(
@@ -134,9 +160,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         ProcessEvents();
         if (!g_noMenus) {
             do {
+#ifdef _WIN32
                 struct _timeb timeb;
                 _ftime(&timeb);
                 unsigned short start = timeb.millitm;
+#else
+                Uint64 start = SDL_GetTicksNS();
+#endif
                 u32 key_event = KeyboardEvent();
                 tMenu_action action = 0;
                 switch (key_event) {
@@ -188,13 +218,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
                     action |= eMenuAction_Shift;
                 }
                 menu_rc = DoMenuStep(action);
+#ifdef _WIN32
                 _ftime(&timeb);
                 int delta_time_ms = timeb.millitm - start;
+#else
+                Uint64 end = SDL_GetTicksNS();
+                int delta_time_ms = (end - start) / 1000000;
+#endif
                 if (delta_time_ms < 35) {
                     if (delta_time_ms < 0) {
                         delta_time_ms = 0;
                     }
+#ifdef _WIN32
                     Sleep(35 - delta_time_ms);
+#else
+                    SDL_Delay(35 - delta_time_ms);
+#endif
                 }
             } while (menu_rc == eMenuRC_continue);
             if (!g_noMenus) {
@@ -231,19 +270,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         }
     } while (g_noMenus != 1);
     QuitError();
-    FreeGameFonts();
-    FreeMission();
-    FreeStyleMemory();
-    FreeMapSectors();
-    StopAndReleaseSpeedLimiter();
-    DestroyMultiplayer();
-    DEBUGPRINT_NOARG();
-    StopAudio();
-    FreeMilesBuffers();
-    UnloadKanjiFont();
-    FlushReplayBuffer();
-    FreeLanguageData();
-    ReleaseMutex(g_GTA_mutex);
+    StopAll();
     DEBUGPRINT_NOARG();
     FreeLanguageData();
     QuitGraphics();

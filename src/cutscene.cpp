@@ -2,10 +2,10 @@
 #include "game.h"
 #include "graphics.h"
 #include "sound.h"
+#include "compat.h"
 
 #include <mgraph.h>
 #include <smack.h>
-#include <windows.h>
 
 // GLOBAL: GTA 0x004a73dc
 int g_Count_mission_cutscene_fonts[] = { 2, 4, 3, 3, 2, 4 };
@@ -35,12 +35,12 @@ tFont *g_City_cut_fonts[4];
 
 // GLOBAL: GTA 0x004af524
 const char *g_Cut_backscreen_paths[6] = {
-    "..\\gtadata\\cut0",
-    "..\\gtadata\\cut1",
-    "..\\gtadata\\cut2",
-    "..\\gtadata\\cut3",
-    "..\\gtadata\\cut4",
-    "..\\gtadata\\cut5",
+    ".." PSEP "gtadata" PSEP "cut0",
+    ".." PSEP "gtadata" PSEP "cut1",
+    ".." PSEP "gtadata" PSEP "cut2",
+    ".." PSEP "gtadata" PSEP "cut3",
+    ".." PSEP "gtadata" PSEP "cut4",
+    ".." PSEP "gtadata" PSEP "cut5",
 };
 
 // GLOBAL: GTA 0x004a73f8
@@ -151,7 +151,7 @@ void PlayDMAIntro() {
     if (StartMilesSoundForIntro()) {
         SmackSoundUseMSS(g_Miles_device);
     }
-    HSMACK smack = SmackOpen("..\\gtadata\\movie.smk", SMACKTRACKS, 0xffffffff);
+    HSMACK smack = SmackOpen(".." PSEP "gtadata" PSEP "movie.smk", SMACKTRACKS, 0xffffffff);
     if (smack != NULL) {
         ConfigureDisplay2(-2);
         if (!g_No_cutscene_video_mode) {

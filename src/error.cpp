@@ -1,5 +1,7 @@
 #include "error.h"
 
+#include "main.h"
+
 #include "decomp.h"
 
 #include <mgraph.h>
@@ -39,12 +41,10 @@ void SetCurrentLoadFilePath(const char *path) {
 
 // FUNCTION: GTA 0x00422900
 void FatalError(tError error, int location, ...) {
-    TRIGGER_BREAKPOINT();
-
     if (g_Error_state == 0 || g_Error_state == 1) {
         strcpy(g_Error_temp_path, g_Current_file_path);
         g_Error_state = 2;
-        FreeOnError();
+        StopAll();
         strcpy(g_Current_file_path, g_Error_temp_path);
     }
     va_list ap;
@@ -63,6 +63,7 @@ void FatalError(tError error, int location, ...) {
             break;
     }
     va_end(ap);
+    TRIGGER_BREAKPOINT();
     exit(-1);
 }
 
@@ -107,10 +108,4 @@ void FormatErrorMessage(tError error, char *buffer, b32 *read_error, b32 *networ
     *network_error = FALSE;
     NOT_IMPLEMENTED();
     // TODO
-}
-
-// STUB: GTA 0x004371e0
-void FreeOnError() {
-    // TODO
-    NOT_IMPLEMENTED();
 }

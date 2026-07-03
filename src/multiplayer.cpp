@@ -8,7 +8,7 @@
 #include "menu.h"
 #include "text.h"
 
-#include <windows.h>
+#include "win_compat.h"
 #include <dplay.h>
 
 #include <stdio.h>
@@ -291,7 +291,7 @@ void InitMultiplayerPlayerCounts() {
     }
 }
 
-static b32 inline CheckDirectPlayResult(HRESULT result) {
+static b32 CheckDirectPlayResult(HRESULT result) {
     switch (result) {
         case DP_OK:
         case DPERR_USERCANCEL:
@@ -470,10 +470,14 @@ b32 FindMultiplayerSessions() {
     }
     g_Multiplayer_sessions = NULL;
     g_Count_multiplayer_sessions = 0;
+#ifdef _WIN32
     ShowCursor(TRUE);
+#endif
     HRESULT result = g_DirectPlay2->EnumSessions(&session_desc, 0, MultiplayerEnumSeessionsCallback, NULL, 0);
     b32 success = CheckDirectPlayResult(result);
+#ifdef _WIN32
     ShowCursor(FALSE);
+#endif
     return success;
 }
 
@@ -486,9 +490,13 @@ b32 CreateMultiplayerSession(char *session_name) {
     session_desc.dwFlags = 0;
     session_desc.dwMaxPlayers = 4;
     session_desc.lpszSessionNameA = session_name;
+#ifdef _WIN32
     ShowCursor(TRUE);
+#endif
     HRESULT result = g_DirectPlay2->Open(&session_desc, DPOPEN_CREATE);
+#ifdef _WIN32
     ShowCursor(FALSE);
+#endif
     if (!CheckDirectPlayResult(result)) {
         result = g_DirectPlay2->DestroyPlayer(g_DirectPlay_player_id);
         CheckDirectPlayResult(result);

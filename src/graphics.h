@@ -7,7 +7,7 @@
 #include "font.h"
 
 #include <mgraph.h>
-#include <windows.h>
+#include <mglwin.h>
 
 struct tAvailable_mode_list {
     int mode;
@@ -68,7 +68,7 @@ extern int g_Mode_blue_pos;
 extern b32 g_No_cutscene_video_mode;
 
 
-extern void InitGraphDriver(HINSTANCE *hInstance);
+extern void InitGraphDriver(MGL_HINSTANCE *hInstance);
 
 extern void AddAvailableMode(tAvailable_mode_list **list, int *mode, int *x_rel, int *y_rel, int *bpp);
 

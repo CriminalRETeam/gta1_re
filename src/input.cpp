@@ -6,11 +6,12 @@
 #include "mission.h"
 #include "text.h"
 #include "util.h"
+#include "compat.h"
 
 #include <stdio.h>
 #include <string.h>
 
-#include <windows.h>
+#include "win_compat.h"
 
 
 // GLOBAL: GTA 0x005134e8
@@ -21,16 +22,16 @@ u32 g_Replay_default_mask;
 
 // GLOBAL: GTA 0x004b2f90
 const char *g_Register_control_names[10] = {
-        "Control 0",
-        "Control 1",
-        "Control 2",
-        "Control 3",
-        "Control 4",
-        "Control 5",
-        "Control 6",
-        "Control 7",
-        "Control 8",
-        "Control 9",
+    "Control 0",
+    "Control 1",
+    "Control 2",
+    "Control 3",
+    "Control 4",
+    "Control 5",
+    "Control 6",
+    "Control 7",
+    "Control 8",
+    "Control 9",
 };
 
 // GLOBAL: GTA 0x00753784
@@ -38,7 +39,7 @@ undefined4 g_Controls_from_register[10];
 
 // GLOBAL: GTA 0x004a8c58
 int g_Register_control_swizzler[10] = {
-        0, 1, 2, 3, 4, 6, 5, 8, 9, 7
+    0, 1, 2, 3, 4, 6, 5, 8, 9, 7
 };
 
 // GLOBAL: GTA 0x00753780
@@ -75,7 +76,7 @@ tReplay_item *g_Replay_buffer;
 
 // FUNCTION: GTA 0x00432c50
 void SetReplayPath(const char *path) {
-    sprintf(g_Replay_path, "..\\gtadata\\%s", path);
+    sprintf(g_Replay_path, ".." PSEP "gtadata" PSEP "%s", path);
     g_Replay_default_mask = (strcmp("replay.rep", path) == 0) - 1;
 }
 
@@ -91,6 +92,7 @@ void InitJoystickCapsAtIndex(int index, int avg, int min, int max) {
 
 // FUNCTION: GTA 0x004337f0
 void InitJoystickCaps() {
+#ifdef _WIN32
     int i;
 
     for (i = 0; i < GTA_ASIZE(g_JoystickCaps.inputs); i++) {
@@ -147,10 +149,12 @@ void InitJoystickCaps() {
             InitJoystickCapsAtIndex(5, caps.wVmin / 256 - 128, (caps.wVmax + caps.wVmin) / 512 - 128, caps.wVmax / 256 - 128);
         }
     }
+#endif
 }
 
 // FUNCTION: GTA 0x0046e820
 void LoadControlsFromRegister() {
+#ifdef _WIN32
     HKEY hKey;
     LONG result = RegOpenKeyExA(HKEY_LOCAL_MACHINE, "SOFTWARE\\DMA Design\\Grand Theft Auto", 0, KEY_READ, &hKey);
     if (result != ERROR_SUCCESS) {
@@ -181,6 +185,13 @@ void LoadControlsFromRegister() {
     if (result != ERROR_SUCCESS) {
         FatalError(eFatalError_cannot_close_registry_key, 426, 0);
     }
+#else
+    // FIXME: set reasonable default values
+    g_Language_id_007537ac = eLanguage_english;
+    for (int i = 0; i < GTA_ASIZE(g_Register_control_names); i++) {
+        g_Controls_from_register[i] = 0;
+    }
+#endif
 }
 
 // FUNCTION: GTA 0x0046e960

@@ -1,5 +1,6 @@
 #include "mgraph.h"
 
+#include "mglwin.h"
 #include <SDL3/SDL.h>
 
 #define WIDTH 640
@@ -53,7 +54,11 @@ struct mgldc_private_data {
     SDL_Color palette_colors[256];
 };
 
-#define NOT_IMPLEMENTED() do {SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Not implemented %s %s:%d\n", __func__, __FILE__, __LINE__); SDL_TriggerBreakpoint(); abort(); } while (0)
+#define NOT_IMPLEMENTED() \
+    do { \
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Not implemented %s %s:%d\n", __func__, __FILE__, __LINE__); \
+        SDL_TriggerBreakpoint(); \
+    } while (0)
 
 static struct {
     bool ddraw8;

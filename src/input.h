@@ -4,8 +4,6 @@
 #include "common.h"
 #include "decomp.h"
 
-#include <windows.h>
-
 struct tJoystickThing {
     struct tJoystick_input {
         s32 min_rng;

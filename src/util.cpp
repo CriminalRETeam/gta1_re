@@ -4,7 +4,11 @@
 
 #include <stdio.h>
 
+#ifdef _WIN32
 #include <windows.h>
+#else
+#include <time.h>
+#endif
 
 // GLOBAL: GTA 0x00511954
 FILE *g_File;
@@ -67,10 +71,17 @@ void *ReadFileToBuffer(const char *path, size_t *size) {
     return buffer;
 }
 
+// FUNCTION: GTA 0x0049ccfb
 static s64 GetCurrentSystemTimeIn100NS() {
+#ifdef _WIN32
     FILETIME ft;
     GetSystemTimeAsFileTime(&ft);
     return (((s64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+#else
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return ((s64)ts.tv_sec * 1000000000 +  (s64)ts.tv_nsec) / 100;
+#endif
 }
 
 // GLOBAL: GTA 0x00786780

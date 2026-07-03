@@ -3,8 +3,12 @@
 
 #include <stdlib.h>
 
+#ifdef _WIN32
 #include <windows.h> // mmreg.h
 #include <mmreg.h> // WAVEFORMAT
+#else
+typedef struct PCMWAVEFORMAT PCMWAVEFORMAT;
+#endif
 
 typedef void *HDIGDRIVER;
 typedef void *HSAMPLE;

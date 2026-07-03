@@ -1,4 +1,5 @@
 #include "sound.h"
+#include "compat.h"
 #include "error.h"
 #include "game.h"
 #include "mission.h"
@@ -7,6 +8,7 @@
 #include <stdio.h>
 #include <time.h>
 
+#include "win_compat.h"
 #include <mss.h>
 
 struct tStream_play_track_info {
@@ -176,16 +178,16 @@ u8 g_Cutscene_volume = 100;
 
 // GLOBAL: GTA 0x004ab2e8
 const char g_Music_track_paths[10][264] = {
-    "..\\music\\track1.wav",
-    "..\\music\\track2.wav",
-    "..\\music\\track3.wav",
-    "..\\music\\track4.wav",
-    "..\\music\\track5.wav",
-    "..\\music\\track6.wav",
-    "..\\music\\track7.wav",
-    "..\\music\\track8.wav",
-    "..\\music\\track9.wav",
-    "..\\music\\track10.wav",
+    ".." PSEP "music" PSEP "track1.wav",
+    ".." PSEP "music" PSEP "track2.wav",
+    ".." PSEP "music" PSEP "track3.wav",
+    ".." PSEP "music" PSEP "track4.wav",
+    ".." PSEP "music" PSEP "track5.wav",
+    ".." PSEP "music" PSEP "track6.wav",
+    ".." PSEP "music" PSEP "track7.wav",
+    ".." PSEP "music" PSEP "track8.wav",
+    ".." PSEP "music" PSEP "track9.wav",
+    ".." PSEP "music" PSEP "track10.wav",
 };
 
 // GLOBAL: GTA 0x00501578
@@ -320,7 +322,7 @@ bool StartMilesSoundForIntro() {
     }
     char name[80];
     AIL_digital_configuration(g_Miles_device, 0, 0, name);
-    if (strnicmp(name, "Emulated", 8) == 0) {
+    if (strncasecmp(name, "Emulated", 8) == 0) {
         AIL_waveOutClose(g_Miles_device);
         AIL_set_preference(15, 1);
         if (AIL_waveOutOpen(&g_Miles_device, 0, -1, &wave_format) != 0) {
@@ -421,7 +423,7 @@ void StartMilesAudio() {
         }
         char name[128];
         AIL_digital_configuration(g_Miles_device, 0, 0, name);
-        if (strnicmp(name, "Emulated", 8) == 0) {
+        if (strncasecmp(name, "Emulated", 8) == 0) {
             AIL_waveOutClose(g_Miles_device);
             AIL_set_preference(15, 1);
             if (AIL_waveOutOpen(&g_Miles_device, 0, -1, &format) != 0) {
@@ -465,7 +467,7 @@ void FreeMilesBuffers() {
 void LoadLevelAudio(int level) {
     if (g_Miles_samples_allocated) {
         char path_no_ext[80];
-        sprintf(path_no_ext, "..\\GTADATA\\AUDIO\\LEVEL%03d", level);
+        sprintf(path_no_ext, ".." PSEP "GTADATA" PSEP "AUDIO" PSEP "LEVEL%03d", level);
         char raw_path[80];
         strcpy(raw_path, path_no_ext);
         strcat(raw_path, ".RAW");
@@ -624,7 +626,7 @@ void SetCutsceneMusicvolume(int volume) {
 void StartCutsceneMusicTrack(int mission) {
     if (g_Miles_samples_allocated) {
         char path[80];
-        sprintf(path, "..\\GTADATA\\AUDIO\\%d.WAV", mission);
+        sprintf(path, ".." PSEP "GTADATA" PSEP "AUDIO" PSEP "%d.WAV", mission);
         g_Cutscene_music_stream = AIL_open_stream(g_Miles_device, path, 0);
         if (g_Cutscene_music_stream != NULL) {
             int arg2;

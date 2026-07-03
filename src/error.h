@@ -335,6 +335,4 @@ extern void ShowErrorMessage(tError error, int location, ...);
 
 extern void FormatErrorMessage(tError error, char *buffer, b32 *read_error, b32 *network_error, ...);
 
-extern void FreeOnError(void);
-
 #endif // ERROR_H

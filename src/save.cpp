@@ -2,6 +2,7 @@
 #include "error.h"
 #include "game.h"
 #include "text.h"
+#include "compat.h"
 
 #include <stdio.h>
 
@@ -10,18 +11,18 @@ tSave_state g_Save_state;
 
 // GLOBAL: GTA 0x00510298
 tDefault_profile g_Default_profiles[8] = {
-    { "..\\gtadata\\f_play1", "Ulrika", },
-    { "..\\gtadata\\f_play2", "Travis", },
-    { "..\\gtadata\\f_play3", "Katie", },
-    { "..\\gtadata\\f_play4", "Mikki", },
-    { "..\\gtadata\\f_play5", "Divine", },
-    { "..\\gtadata\\f_play6", "Bubba", },
-    { "..\\gtadata\\f_play7", "Troy", },
-    { "..\\gtadata\\f_play8", "Kivlov", },
+    { ".." PSEP "gtadata" PSEP "f_play1", "Ulrika", },
+    { ".." PSEP "gtadata" PSEP "f_play2", "Travis", },
+    { ".." PSEP "gtadata" PSEP "f_play3", "Katie", },
+    { ".." PSEP "gtadata" PSEP "f_play4", "Mikki", },
+    { ".." PSEP "gtadata" PSEP "f_play5", "Divine", },
+    { ".." PSEP "gtadata" PSEP "f_play6", "Bubba", },
+    { ".." PSEP "gtadata" PSEP "f_play7", "Troy", },
+    { ".." PSEP "gtadata" PSEP "f_play8", "Kivlov", },
 };
 
 static bool TryLoadSaveGame() {
-    FILE *f = fopen("..\\gtadata\\player_a.dat", "rb");
+    FILE *f = fopen(".." PSEP "gtadata" PSEP "player_a.dat", "rb");
     if (f == NULL) {
         return false;
     }
@@ -61,12 +62,12 @@ void InitializeSaveState() {
             }
         }
         sprintf(g_Save_state.session_name, "GTA Game");
-        FILE *f = fopen("..\\gtadata\\player_a.dat", "wb");
+        FILE *f = fopen(".." PSEP "gtadata" PSEP "player_a.dat", "wb");
         if (f == NULL) {
-            FatalError(eFatalError_cannot_open_S, 478, "..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_open_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
         }
         if (fwrite(&g_Save_state, 1, sizeof(g_Save_state), f) != sizeof(g_Save_state)) {
-            FatalError(eFatalError_cannot_write_data_to_S, 478, "..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_write_data_to_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
         }
         fclose(f);
     }

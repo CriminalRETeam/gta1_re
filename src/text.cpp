@@ -2,10 +2,9 @@
 #include "error.h"
 #include "input.h"
 #include "util.h"
+#include "compat.h"
 
 #include <stdio.h>
-
-#include <windows.h>
 
 // GLOBAL: GTA 0x007537ac
 tLanguage g_Language_id_007537ac;
@@ -50,27 +49,27 @@ void SetLanguageDataPath() {
     g_Language_id_00775554 = language;
     switch (language) {
     case eLanguage_english:
-        strcpy(g_Language_data_path, "..\\gtadata\\english.fxt");
+        strcpy(g_Language_data_path, ".." PSEP "gtadata" PSEP "english.fxt");
         g_Language_is_japanese = false;
         break;
     case eLanguage_french:
-        strcpy(g_Language_data_path, "..\\gtadata\\french.fxt");
+        strcpy(g_Language_data_path, ".." PSEP "gtadata" PSEP "french.fxt");
         g_Language_is_japanese = false;
         break;
     case eLanguage_german:
-        strcpy(g_Language_data_path, "..\\gtadata\\german.fxt");
+        strcpy(g_Language_data_path, ".." PSEP "gtadata" PSEP "german.fxt");
         g_Language_is_japanese = false;
         break;
     case eLanguage_italian:
-        strcpy(g_Language_data_path, "..\\gtadata\\italian.fxt");
+        strcpy(g_Language_data_path, ".." PSEP "gtadata" PSEP "italian.fxt");
         g_Language_is_japanese = false;
         break;
     case eLanguage_japanese:
-        strcpy(g_Language_data_path, "..\\gtadata\\japanese.fxt");
+        strcpy(g_Language_data_path, ".." PSEP "gtadata" PSEP "japanese.fxt");
         g_Language_is_japanese = true;
         break;
     case eLanguage_special:
-        strcpy(g_Language_data_path, "..\\gtadata\\special.fxt");
+        strcpy(g_Language_data_path, ".." PSEP "gtadata" PSEP "special.fxt");
         g_Language_is_japanese = false;
         break;
     default:
@@ -135,22 +134,22 @@ void InitLanguageFilePath(tLanguage language) {
     g_Language_id_00775554 = language;
     switch (language) {
     case eLanguage_english:
-        strcpy(g_Language_data_path, "..\\gtadata\\english.fxt");
+        strcpy(g_Language_data_path, ".." PSEP "gtadata" PSEP "english.fxt");
         break;
     case eLanguage_french:
-        strcpy(g_Language_data_path, "..\\gtadata\\french.fxt");
+        strcpy(g_Language_data_path, ".." PSEP "gtadata" PSEP "french.fxt");
         break;
     case eLanguage_german:
-        strcpy(g_Language_data_path, "..\\gtadata\\german.fxt");
+        strcpy(g_Language_data_path, ".." PSEP "gtadata" PSEP "german.fxt");
         break;
     case eLanguage_italian:
-        strcpy(g_Language_data_path, "..\\gtadata\\italian.fxt");
+        strcpy(g_Language_data_path, ".." PSEP "gtadata" PSEP "italian.fxt");
         break;
     case eLanguage_japanese:
-        strcpy(g_Language_data_path, "..\\gtadata\\japanese.fxt");
+        strcpy(g_Language_data_path, ".." PSEP "gtadata" PSEP "japanese.fxt");
         break;
     case eLanguage_special:
-        strcpy(g_Language_data_path, "..\\gtadata\\special.fxt");
+        strcpy(g_Language_data_path, ".." PSEP "gtadata" PSEP "special.fxt");
         break;
     default:
         FatalError(eFatalError_invalid_case, 95, language);

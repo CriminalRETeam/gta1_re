@@ -12,7 +12,9 @@
 #include "sound.h"
 #include "text.h"
 #include "util.h"
+#include "compat.h"
 
+#include <ctype.h>
 #include <stdio.h>
 
 
@@ -99,17 +101,17 @@ void LoadMenuLogos() {
             g_Menu_lowers[i].pixels = CheckedMalloc(g_Menu_bytes_per_pixel * g_Menu_lowers[i].w * g_Menu_lowers[i].h);
         }
     }
-    LoadPixelmap(&g_Menu_upper, "..\\gtadata\\f_upper", 0);
-    LoadPixelmap(&g_Menu_logos[0], "..\\gtadata\\f_logo0", 0);
-    LoadPixelmap(&g_Menu_logos[1], "..\\gtadata\\f_logo1", 0);
-    LoadPixelmap(&g_Menu_logos[2], "..\\gtadata\\f_logo2", 0);
-    LoadPixelmap(&g_Menu_logos[3], "..\\gtadata\\f_logo3", 0);
-    LoadPixelmap(&g_Menu_logos[4], "..\\gtadata\\f_logo4", 0);
-    LoadPixelmap(&g_Menu_logos[5], "..\\gtadata\\f_logo5", 0);
-    LoadPixelmap(&g_Menu_logos[6], "..\\gtadata\\f_logo6", 0);
-    LoadPixelmap(&g_Menu_logos[7], "..\\gtadata\\f_logo7", 0);
-    LoadPixelmap(&g_Menu_lowers[0], "..\\gtadata\\f_lower0", 0);
-    LoadPixelmap(&g_Menu_lowers[1], "..\\gtadata\\f_lower1", 0);
+    LoadPixelmap(&g_Menu_upper, ".." PSEP "gtadata" PSEP "f_upper", 0);
+    LoadPixelmap(&g_Menu_logos[0], ".." PSEP "gtadata" PSEP "f_logo0", 0);
+    LoadPixelmap(&g_Menu_logos[1], ".." PSEP "gtadata" PSEP "f_logo1", 0);
+    LoadPixelmap(&g_Menu_logos[2], ".." PSEP "gtadata" PSEP "f_logo2", 0);
+    LoadPixelmap(&g_Menu_logos[3], ".." PSEP "gtadata" PSEP "f_logo3", 0);
+    LoadPixelmap(&g_Menu_logos[4], ".." PSEP "gtadata" PSEP "f_logo4", 0);
+    LoadPixelmap(&g_Menu_logos[5], ".." PSEP "gtadata" PSEP "f_logo5", 0);
+    LoadPixelmap(&g_Menu_logos[6], ".." PSEP "gtadata" PSEP "f_logo6", 0);
+    LoadPixelmap(&g_Menu_logos[7], ".." PSEP "gtadata" PSEP "f_logo7", 0);
+    LoadPixelmap(&g_Menu_lowers[0], ".." PSEP "gtadata" PSEP "f_lower0", 0);
+    LoadPixelmap(&g_Menu_lowers[1], ".." PSEP "gtadata" PSEP "f_lower1", 0);
 }
 
 // FUNCTION: GTA 0x0042d5c0
@@ -471,7 +473,7 @@ void UpdateNextMenu(tMenu_index menu) {
                 } else {
                     font_filename = g_Cut_font_names[g_Menu_current_mission_index][i];
                 }
-                sprintf(font_path, "..\\gtadata\\%s.fon", font_filename);
+                sprintf(font_path, ".." PSEP "gtadata" PSEP "%s.fon", font_filename);
                 LoadFont(&g_City_cut_fonts[i], font_path, 1, true);
             }
         }
@@ -649,13 +651,13 @@ void UpdateNextMenu(tMenu_index menu) {
         }
         UpdateAvailableCitiesCount();
         g_Save_state.field_0x4 = GetSuitableGraphicsMode();
-        FILE *f = fopen("..\\gtadata\\player_a.dat", "wb");
+        FILE *f = fopen(".." PSEP "gtadata" PSEP "player_a.dat", "wb");
         if (f == (FILE *)0x0) {
-            FatalError(eFatalError_cannot_open_S, 478,"..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_open_S, 478,".." PSEP "gtadata" PSEP "player_a.dat");
         }
         // assert(sizeof(g_Save_state) == 0x414);
         if (fwrite(&g_Save_state, 1, sizeof(g_Save_state), f) != sizeof(g_Save_state)) {
-            FatalError(eFatalError_cannot_write_data_to_S, 478, "..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_write_data_to_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
         }
         fclose(f);
         break;
@@ -678,11 +680,11 @@ void InitMenus(tMenu_index menu) {
             LoadPixelmap(&g_Profile_pixelmaps[i], g_Default_profiles[i].profile_pic_path, 0);
         }
         InitializePixelmap(&g_Playn, 180, 50);
-        LoadPixelmap(&g_Playn, "..\\gtadata\\f_playn", 0);
+        LoadPixelmap(&g_Playn, ".." PSEP "gtadata" PSEP "f_playn", 0);
         InitializePixelmap(&g_Logo_sw, 64, 59);
-        LoadPixelmap(&g_Logo_sw, "..\\gtadata\\f_rstar", 0);
+        LoadPixelmap(&g_Logo_sw, ".." PSEP "gtadata" PSEP "f_rstar", 0);
         InitializePixelmap(&g_Logo_se, 64, 59);
-        LoadPixelmap(&g_Logo_se, "..\\gtadata\\f_rstarn", 0);
+        LoadPixelmap(&g_Logo_se, ".." PSEP "gtadata" PSEP "f_rstarn", 0);
         g_Menu_logos_loaded = true;
     }
     g_Cutscene_loaded_index = -1;
@@ -1084,12 +1086,12 @@ void DoCitySelectMenu(tMenu_action action) {
                     }
                     UpdateNextMenu(eMenu_connection_select);
                 }
-                FILE *f = fopen("..\\gtadata\\player_a.dat", "wb");
+                FILE *f = fopen(".." PSEP "gtadata" PSEP "player_a.dat", "wb");
                 if (f == NULL) {
-                    FatalError(eFatalError_cannot_write_data_to_S, 478, "..\\gtadata\\player_a.dat");
+                    FatalError(eFatalError_cannot_write_data_to_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
                 }
                 if (fwrite(&g_Save_state, 1, sizeof(g_Save_state), f) != sizeof(g_Save_state)) {
-                    FatalError(eFatalError_cannot_write_data_to_S, 478, "..\\gtadata\\player_a.dat");
+                    FatalError(eFatalError_cannot_write_data_to_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
                 }
                 fclose(f);
             }
@@ -1192,17 +1194,17 @@ void DoOptionsMenu(tMenu_action action) {
     if (action & eMenuAction_Enter) {
         PlayMenuSound(2);
         UpdateNextMenu(eMenu_main_menu);
-        FILE *f = fopen("..\\gtadata\\player_a.dat", "wb");
+        FILE *f = fopen(".." PSEP "gtadata" PSEP "player_a.dat", "wb");
         if (f == NULL) {
-            FatalError(eFatalError_cannot_open_S, 478, "..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_open_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
         }
         if (fwrite(&g_Save_state, 1, sizeof(g_Save_state),f) != sizeof(g_Save_state)) {
-            FatalError(eFatalError_cannot_write_data_to_S, 478, "..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_write_data_to_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
         }
         fclose(f);
     } else if (action & eMenuAction_Escape) {
         UpdateNextMenu(eMenu_main_menu);
-        FILE *f = fopen("..\\gtadata\\player_a.dat", "rb");
+        FILE *f = fopen(".." PSEP "gtadata" PSEP "player_a.dat", "rb");
         if (f != NULL) {
             fread(&g_Save_state, 1, sizeof(g_Save_state), f);
             fclose(f);
@@ -1379,12 +1381,12 @@ void DoProfileSelectionMenu(tMenu_action action) {
     }
     if (action & eMenuAction_Escape) {
         UpdateNextMenu(eMenu_main_menu);
-        FILE *f = fopen("..\\gtadata\\player_a.dat", "wb");
+        FILE *f = fopen(".." PSEP "gtadata" PSEP "player_a.dat", "wb");
         if (f == NULL) {
-            FatalError(eFatalError_cannot_open_S, 478, "..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_open_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
         }
         if (fwrite(&g_Save_state, 1, sizeof(g_Save_state), f) != sizeof(g_Save_state)) {
-            FatalError(eFatalError_cannot_write_data_to_S, 478, "..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_write_data_to_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
         }
         fclose(f);
         PlayMenuSound(4);
@@ -1411,12 +1413,12 @@ void DoProfileSelectionMenu(tMenu_action action) {
     }
     if (action & eMenuAction_Backspace) {
         PlayMenuSound(12);
-        FILE *f = fopen("..\\gtadata\\player_a.dat", "wb");
+        FILE *f = fopen(".." PSEP "gtadata" PSEP "player_a.dat", "wb");
         if (f == NULL) {
-            FatalError(eFatalError_cannot_open_S, 478, "..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_open_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
         }
         if (fwrite(&g_Save_state, 1, sizeof(g_Save_state), f) != sizeof(g_Save_state)) {
-            FatalError(eFatalError_cannot_write_data_to_S, 478,"..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_write_data_to_S, 478,".." PSEP "gtadata" PSEP "player_a.dat");
         }
         fclose(f);
         UpdateNextMenu(eMenu_profile_name_edit);
@@ -1495,7 +1497,7 @@ void DoProfileNameEditMenu(tMenu_action action) {
     }
     if (action & eMenuAction_Escape) {
         UpdateNextMenu(eMenu_profile_select);
-        FILE *f = fopen("..\\gtadata\\player_a.dat","rb");
+        FILE *f = fopen(".." PSEP "gtadata" PSEP "player_a.dat","rb");
         if (f != NULL) {
             fread(&g_Save_state, 1, sizeof(g_Save_state), f);
             fclose(f);
@@ -1576,12 +1578,12 @@ void DoProfileNameEditMenu(tMenu_action action) {
         } else {
             PlayMenuSound(2);
         }
-        FILE *f = fopen("..\\gtadata\\player_a.dat", "wb");
+        FILE *f = fopen(".." PSEP "gtadata" PSEP "player_a.dat", "wb");
         if (f == NULL) {
-            FatalError(eFatalError_cannot_open_S, 478, "..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_open_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
         }
         if (fwrite(&g_Save_state, 1, sizeof(g_Save_state), f) != sizeof(g_Save_state)) {
-            FatalError(eFatalError_cannot_write_data_to_S, 478, "..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_write_data_to_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
         }
         fclose(f);
     }
@@ -1651,12 +1653,12 @@ void DoResetProfileMenu(tMenu_action action) {
             g_Save_state.profiles[g_Save_state.active_profile_index].selected_city[1] = 0;
             g_Save_state.profiles[g_Save_state.active_profile_index].selected_mission[1] = 0;
             UpdateNextMenu(eMenu_profile_select);
-            FILE *f = fopen("..\\gtadata\\player_a.dat", "wb");
+            FILE *f = fopen(".." PSEP "gtadata" PSEP "player_a.dat", "wb");
             if (f == NULL) {
-                FatalError(eFatalError_cannot_open_S, 478, "..\\gtadata\\player_a.dat");
+                FatalError(eFatalError_cannot_open_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
             }
             if (fwrite(&g_Save_state, 1, sizeof(g_Save_state), f) != sizeof(g_Save_state)) {
-                FatalError(eFatalError_cannot_write_data_to_S, 478, "..\\gtadata\\player_a.dat");
+                FatalError(eFatalError_cannot_write_data_to_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
             }
             fclose(f);
         }
@@ -1772,7 +1774,7 @@ void DoMultiplayerOptionsMenu(tMenu_action action) {
     }
     if (action & eMenuAction_Escape) {
         UpdateNextMenu(eMenu_city_select);
-        FILE *f = fopen("..\\gtadata\\player_a.dat", "rb");
+        FILE *f = fopen(".." PSEP "gtadata" PSEP "player_a.dat", "rb");
         if (f != NULL) {
             fread(&g_Save_state, 1, sizeof(g_Save_state), f);
             fclose(f);
@@ -1789,12 +1791,12 @@ void DoMultiplayerOptionsMenu(tMenu_action action) {
             }
             UpdateNextMenu(eMenu_connection_select);
         }
-        FILE *f = fopen("..\\gtadata\\player_a.dat", "wb");
+        FILE *f = fopen(".." PSEP "gtadata" PSEP "player_a.dat", "wb");
         if (f == NULL) {
-            FatalError(eFatalError_cannot_open_S, 478, "..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_open_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
         }
         if (fwrite(&g_Save_state, 1, sizeof(g_Save_state), f) != sizeof(g_Save_state)) {
-            FatalError(eFatalError_cannot_write_data_to_S, 478, "..\\gtadata\\player_a.dat");
+            FatalError(eFatalError_cannot_write_data_to_S, 478, ".." PSEP "gtadata" PSEP "player_a.dat");
         }
         fclose(f);
     }

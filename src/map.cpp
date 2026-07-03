@@ -1,7 +1,8 @@
 #include "map.h"
 #include "common.h"
 
-#include <windows.h>
+#include <stdlib.h>
+#include <string.h>
 
 // GLOBAL: GTA 0x005c1c24
 u8 g_Map_name_priority;

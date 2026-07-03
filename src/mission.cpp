@@ -2,6 +2,7 @@
 #include "map.h"
 #include "error.h"
 #include "util.h"
+#include "compat.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -44,7 +45,7 @@ void LoadMission() {
     } else {
         char section_header[12];
 
-        OpenTextFile("..\\gtadata\\mission.ini");
+        OpenTextFile(".." PSEP "gtadata" PSEP "mission.ini");
         sprintf(section_header, "[%d]", g_Current_mission_index);
         SkipUntilStringDelim(section_header);
         ReadCopyUntilDelim(g_Mission_info.name, sizeof(g_Mission_info.name), ',');

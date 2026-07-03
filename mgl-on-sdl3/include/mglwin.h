@@ -1,13 +1,19 @@
 #ifndef MGLWIN_H
 #define MGLWIN_H
 
+#ifdef _WIN32
+#define MGLWIN_STDCALL __stdcall
+#else
+#define MGLWIN_STDCALL
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 typedef void *MGL_HINSTANCE;
 typedef void *MGL_HWND;
-typedef long (__stdcall *MGL_WNDPROC)(MGL_HWND, uint, uint, long);
+typedef long (MGLWIN_STDCALL *MGL_WNDPROC)(MGL_HWND, uint, uint, long);
 
 extern void MGL_setAppInstance(MGL_HINSTANCE hInstApp);
 extern void MGL_registerEventProc(MGL_WNDPROC userWndProc);

@@ -3,8 +3,6 @@
 
 #include "common.h"
 
-#include <windows.h>
-
 enum {
     eScancode_Esc = 0x01,
     eScancode_Tab = 0x0f,

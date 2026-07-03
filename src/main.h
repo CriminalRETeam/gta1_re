@@ -5,6 +5,8 @@
 
 extern b32 g_noMenus;
 
+extern void StopAll(void);
+
 extern int OnOutOfMemory(unsigned int count);
 
 #endif // MAIN_H

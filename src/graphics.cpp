@@ -9,10 +9,10 @@
 #include "text.h"
 #include "util.h"
 
-#include <windows.h>
 #include <mgraph.h>
 
 #include <sstream>
+#include <stdio.h>
 #include <stdlib.h>
 
 struct tScreen_description {
@@ -150,18 +150,20 @@ int g_Font_key_animation_idx;
 // GLOBAL: GTA 0x0051158c
 int g_Font_key_mp_session_index;
 
-
 // FUNCTION: GTA 0x00415950
-long CALLBACK FilterEventProc(void *hWnd, unsigned int uMsg, unsigned int wParam, long int lParam) {
-//LRESULT CALLBACK FilterEventProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+long MGLWIN_STDCALL FilterEventProc(void *hWnd, unsigned int uMsg, unsigned int wParam, long int lParam) {
+#ifdef _WIN32
     if ((uMsg >= WM_SYSKEYDOWN && uMsg <= WM_SYSDEADCHAR) || (uMsg == WM_SYSCOMMAND && wParam == SC_SCREENSAVE)) {
         return 0;
     }
     return DefWindowProcA((HWND)hWnd, uMsg, wParam, lParam);
+#else
+    return 1;
+#endif
 }
 
 // FUNCTION: GTA 0x00415310
-void InitGraphDriver(HINSTANCE *hInstance) {
+void InitGraphDriver(MGL_HINSTANCE *hInstance) {
     g_Available_mode_counts[0] = 0;
     g_Available_modes[0] = NULL;
     g_Available_mode_counts[1] = 0;
@@ -300,11 +302,13 @@ void QuitGraphics() {
     }
     MGL_exit();
 
+#ifdef _WIN32
     MSG msg;
     while (PeekMessage(&msg, NULL, 0, 0, TRUE)) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
+#endif
 }
 
 // FUNCTION: GTA 0x00414c70
