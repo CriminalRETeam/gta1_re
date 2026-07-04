@@ -37,21 +37,21 @@ void *ReadFileToBuffer(const char *path, size_t *size) {
         FatalError(eFatalError_unable_to_open_file, 6, NULL);
     }
     if (ftell(f) == -1) {
-        FatalError(eFatalError_ftell_error_in_file_S, 7, NULL);
+        FatalError(eFatalError_ftell_error_in_file, 7, NULL);
     }
     if (fseek(f, 0, SEEK_END) != 0) {
-        FatalError(eFatalError_fseek_error_in_file_S, 7, NULL);
+        FatalError(eFatalError_fseek_error_in_file, 7, NULL);
     }
     long file_size = ftell(f);
     if (file_size == -1) {
-        FatalError(eFatalError_ftell_error_in_file_S, 7, NULL);
+        FatalError(eFatalError_ftell_error_in_file, 7, NULL);
     }
     if (fseek(f, 0, SEEK_SET) != 0) {
-        FatalError(eFatalError_fseek_error_in_file_S, 7, NULL);
+        FatalError(eFatalError_fseek_error_in_file, 7, NULL);
     }
     *size = file_size;
     if (fclose(f)) {
-        FatalError(eFatalError_unable_to_close_file_S, 6, NULL);
+        FatalError(eFatalError_unable_to_close_file, 6, NULL);
     }
     void *buffer = CheckedMalloc(*size);
     f = fopen(path, "rb");
@@ -66,7 +66,7 @@ void *ReadFileToBuffer(const char *path, size_t *size) {
     }
     if (fclose(f)) {
         free(buffer);
-        FatalError(eFatalError_unable_to_close_file_S, 6, NULL);
+        FatalError(eFatalError_unable_to_close_file, 6, NULL);
     }
     return buffer;
 }
@@ -100,7 +100,7 @@ void CloseTextFile() {
         int result = fclose(g_File);
         g_File_opened = FALSE;
         if (result != 0) {
-            FatalError(eFatalError_unable_to_close_file_S, 22, NULL);
+            FatalError(eFatalError_unable_to_close_file, 22, NULL);
         }
     }
 }
@@ -123,7 +123,7 @@ void SkipUntilStringDelim(const char *delim) {
         for (;;) {
             int c = fgetc(g_File);
             if (c == EOF) {
-                FatalError(eFatalError_cannot_find_S_in_file_S, 98, delim, g_Current_file_path);
+                FatalError(eFatalError_cannot_find_S_in_file, 98, delim, g_Current_file_path);
             }
             if (c != delim[delim_i]) {
                 break;
@@ -162,7 +162,7 @@ void ReadCopyUntilDelim(char *buffer, size_t capacity, char delim) {
             if (c != ' ' && c != '\n' && c != '\r' && c != '\t') {
                 last_text_pos = len;
                 if (len >= capacity) {
-                    FatalError(eFatalError_text_string_too_long_in_file_S, 101, NULL);
+                    FatalError(eFatalError_text_string_too_long_in_file, 101, NULL);
                 }
             }
             if (len >= capacity) {
@@ -172,7 +172,7 @@ void ReadCopyUntilDelim(char *buffer, size_t capacity, char delim) {
             len += 1;
             break;
         default:
-            FatalError(eFatalError_invalid_case, 101, state);
+            FatalError(eFatalError_invalid_case_D, 101, state);
             break;
         }
     }
@@ -193,7 +193,7 @@ int ReadInteger() {
         if (ch == '[') {
             int res = ungetc('[', g_File);
             if (res != '[') {
-                FatalError(eFatalError_ungetc_failure_in_file_S, 100, NULL);
+                FatalError(eFatalError_ungetc_failure_in_file, 100, NULL);
             }
             return number;
         }
@@ -210,12 +210,12 @@ int ReadInteger() {
             } else if (ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t') {
                 state = 2;
             } else {
-                FatalError(eFatalError_invalid_integer_encountered_in_file_S, 100, NULL);
+                FatalError(eFatalError_invalid_integer_encountered_in_file, 100, NULL);
             }
             break;
         case 2:
             if (!(ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t')) {
-                FatalError(eFatalError_invalid_integer_encountered_in_file_S, 100, NULL);
+                FatalError(eFatalError_invalid_integer_encountered_in_file, 100, NULL);
             }
             break;
         }
@@ -226,7 +226,7 @@ int ReadInteger() {
 void WriteBufferToFile(const char *path, const void *buffer, size_t size) {
     SetCurrentLoadFilePath(path);
     if (size == 0) {
-        FatalError(eFatalError_writing_zero_bytes_to_file_S, 55, NULL);
+        FatalError(eFatalError_writing_zero_bytes_to_file, 55, NULL);
     }
     FILE *f = fopen(path, "wb");
     if (f == NULL) {
@@ -234,9 +234,9 @@ void WriteBufferToFile(const char *path, const void *buffer, size_t size) {
     }
     if (fwrite(buffer, size, 1, f) != 1) {
         fclose(f);
-        FatalError(eFatalError_write_failure_on_file_S, 55, NULL);
+        FatalError(eFatalError_write_failure_on_file, 55, NULL);
     }
     if (fclose(f) != 0) {
-        FatalError(eFatalError_unable_to_close_file_S, 55, NULL);
+        FatalError(eFatalError_unable_to_close_file, 55, NULL);
     }
 }

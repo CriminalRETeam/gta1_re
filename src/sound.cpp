@@ -234,7 +234,7 @@ void StopMilesFromGames() {
 void ApplySoundVolumes() {
     if (g_Save_state.sound_volume < 0 || g_Save_state.sound_volume >= GTA_ASIZE(g_Sound_volume_preset_values)
             || g_Save_state.music_volume < 0 || g_Save_state.music_volume >= GTA_ASIZE(g_Music_volume_preset_values)) {
-        FatalError(eFatalError_volume_out_of_range_2, 478, NULL);
+        FatalError(eFatalError_volume_out_of_range, 478, NULL);
     }
     if (g_Save_state.sound_volume != 0) {
         SetSoundEnabled(true);

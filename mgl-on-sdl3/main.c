@@ -2,6 +2,7 @@
 
 #include "mglwin.h"
 #include <SDL3/SDL.h>
+#include <stdlib.h>
 
 #define WIDTH 640
 #define HEIGHT 480
@@ -309,7 +310,9 @@ int MGL_modeResolution(int mode, int *xRes, int *yRes, int *bitsPerPixel) {
 }
 
 void MGL_fatalError(const char *msg) {
-    NOT_IMPLEMENTED();
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Fatal error", msg, global_window);
+    SDL_TriggerBreakpoint();
+    exit(1);
 }
 
 int MGL_result(void) {

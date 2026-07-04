@@ -265,7 +265,7 @@ void SetTextSpeed(int text_speed) {
         g_INT_004b3614 = 3;
         break;
     default:
-        FatalError(eFatalError_invalid_case, 200, text_speed);
+        FatalError(eFatalError_invalid_case_D, 200, text_speed);
         break;
     }
 }

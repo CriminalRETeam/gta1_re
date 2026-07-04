@@ -464,7 +464,7 @@ void ConfigureDisplay2(int mode) {
     } else if (g_Bits_per_pixel == 32) {
         g_Bytes_per_pixel = 4;
     } else {
-        FatalError(eFatalError_invalid_case, 501, draw_dc->mi.bitsPerPixel);
+        FatalError(eFatalError_invalid_case_D, 501, draw_dc->mi.bitsPerPixel);
     }
     UpdateRowPointers(draw_dc->surface, draw_dc->mi.bytesPerLine, g_Screen_height);
     g_Row_stride = draw_dc->mi.bytesPerLine;

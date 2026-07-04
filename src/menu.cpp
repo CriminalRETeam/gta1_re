@@ -1468,7 +1468,7 @@ const char *GetMultiplayerJoinGatherString() {
         id = "gather";
         break;
     default:
-        FatalError(eFatalError_invalid_case, 235, g_Multiplayer_room_status);
+        FatalError(eFatalError_invalid_case_D, 235, g_Multiplayer_room_status);
     }
     strcat(g_Join_gather_status_string, GetTranslatedString(id));
     return g_Join_gather_status_string;

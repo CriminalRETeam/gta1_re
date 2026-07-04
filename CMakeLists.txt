@@ -17,9 +17,7 @@ if(CMAKE_C_COMPILER_ID MATCHES "MSVC" AND CMAKE_C_COMPILER_VERSION VERSION_LESS 
     add_link_options("-INCREMENTAL:NO")
 endif()
 
-if(NOT WIN32)
-    include_directories(3rdparty/win/include)
-endif()
+include_directories(3rdparty/win/include)
 
 add_subdirectory(3rdparty/dplay)
 add_subdirectory(3rdparty/miles)

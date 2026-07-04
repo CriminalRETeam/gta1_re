@@ -73,7 +73,7 @@ void SetLanguageDataPath() {
         g_Language_is_japanese = false;
         break;
     default:
-        FatalError(eFatalError_invalid_case, 95, language);
+        FatalError(eFatalError_invalid_case_D, 95, language);
         if (language == eLanguage_japanese) {
             g_Language_is_japanese = true;
         } else {
@@ -98,7 +98,7 @@ const char *GetTranslatedString(const char *uid) {
         }
         g_Translated_strings_loaded = TRUE;
         if (g_Translated_strings[size - 2] != '[' && g_Translated_strings[size - 1] != ']') {
-            FatalError(eFatalError_invalid_format_in_text_file_S, 97, NULL);
+            FatalError(eFatalError_invalid_format_in_text_file, 97, NULL);
         }
     }
     const char *cursor = g_Translated_strings;
@@ -152,7 +152,7 @@ void InitLanguageFilePath(tLanguage language) {
         strcpy(g_Language_data_path, ".." PSEP "gtadata" PSEP "special.fxt");
         break;
     default:
-        FatalError(eFatalError_invalid_case, 95, language);
+        FatalError(eFatalError_invalid_case_D, 95, language);
         break;
     }
     g_Language_is_japanese = language == eLanguage_japanese;
