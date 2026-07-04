@@ -2,6 +2,8 @@
 
 #include <stdlib.h>
 
+#include <SDL3/SDL.h>
+
 int AIL_DECL AIL_startup(void) {
 	return 0;
 }
@@ -113,7 +115,7 @@ int AIL_DECL AIL_waveOutClose(HDIGDRIVER driver) {
 }
 
 int AIL_DECL AIL_ms_count(void) {
-	return 0;
+	return SDL_GetTicks();
 }
 
 void AIL_DECL AIL_stop_timer(HTIMER timer) {

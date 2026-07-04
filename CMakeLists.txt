@@ -107,4 +107,10 @@ if(CMAKE_C_COMPILER_ID STREQUAL "MSVC")
     endif()
 endif()
 
+if(NOT WIN32)
+    target_sources(regta PRIVATE src/wraps.c)
+    target_link_options(regta PRIVATE "-Wl,--wrap=fopen")
+    target_link_libraries(regta PRIVATE physfs)
+endif()
+
 reccmp_configure()

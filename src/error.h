@@ -311,7 +311,7 @@ enum tError {
     eFatalError_powerup_placed_on_slope_in_line_D = -310,
     eFatalError_new_powerup_type_D_already_exists = -311,
     eFatalError_firetruck_attending_a_non_fire_object = -312,
-    eFatalError_vesa_mode_failure_7 = -401,
+    eFatalError_argument1 = -401,
     eFatalError_vesa_mode_failure_6 = -1000,
     eFatalError_vesa_mode_failure_5 = -1001,
     eFatalError_vesa_mode_failure_4 = -1002,

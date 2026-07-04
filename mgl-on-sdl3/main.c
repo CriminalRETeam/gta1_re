@@ -235,7 +235,9 @@ ibool MGL_init(int *driver, int *mode, const char *mglpath) {
     global_driver = *driver;
     global_mode = *mode;
     global_result = grOK;
+#ifdef _WIN32
     SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
+#endif
     {
         global_window = SDL_CreateWindow("regta", WIDTH, HEIGHT, 0);
         if (global_window == NULL) {

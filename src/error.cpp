@@ -135,11 +135,20 @@ void FormatErrorMessage(tError error, char *buffer, b32 *read_error, b32 *networ
     case eFatalError_vesa_mode_failure_6:
         strcpy(buffer, "VESA mode failure");
         break;
-    case eFatalError_vesa_mode_failure_7:
+    case eFatalError_argument1:
         strcpy(buffer, va_arg(ap, const char *));
         break;
     case eFatalError_firetruck_attending_a_non_fire_object:
         sprintf(buffer, "Firetruck attending a non-fire object");
+        break;
+    case eFatalError_network_message_checksum_error:
+        strcpy(buffer, "network message checksum error");
+        break;
+    case eFatalError_powerup_already_exists_at_coords_in_line_D:
+        sprintf(buffer,"Powerup already exists at coords in line %d", va_arg(ap, int));
+        break;
+    case eFatalError_powerup_placed_on_slope_in_line_D:
+        sprintf(buffer,"Powerup placed on slope in line %d", va_arg(ap, int));
         break;
     case eFatalError_new_powerup_type_D_already_exists:
         sprintf(buffer,"New powerup type %d already exists", va_arg(ap, int));

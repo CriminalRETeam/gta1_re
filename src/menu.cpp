@@ -935,8 +935,8 @@ void DoLoadMenu(tMenu_action) {
                 g_Current_cities[g_Save_state.profiles[profile_index].selected_city[g_Menu_is_multiplayer]].name);
         } else {
             sprintf(g_Load_temporary_buffer, g_Message_chapter,
-                g_Save_state.profiles[profile_index].selected_mission[g_Menu_is_multiplayer] + 1,
-                g_Current_cities[g_Save_state.profiles[profile_index].selected_city[g_Menu_is_multiplayer]].name);
+                g_Current_cities[g_Save_state.profiles[profile_index].selected_city[g_Menu_is_multiplayer]].name,
+                g_Save_state.profiles[profile_index].selected_mission[g_Menu_is_multiplayer] + 1);
         }
     } else {
         strcpy(g_Load_temporary_buffer, g_Current_cities[g_Save_state.profiles[profile_index].selected_city[g_Menu_is_multiplayer]].name);
